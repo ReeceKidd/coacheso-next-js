@@ -9,10 +9,15 @@ import { useApollo } from "../apollo";
 
 import { themeDark, themeLight } from "../lib/theme";
 
+import Header from "../components/Header";
+
 export default function MyApp(props) {
   const { Component, pageProps } = props;
 
-  const [darkState] = useState(false);
+  const [darkState, setDarkState] = useState(false);
+  const handleThemeChange = () => {
+    setDarkState(!darkState);
+  };
 
   const apolloClient = useApollo();
 
@@ -28,6 +33,7 @@ export default function MyApp(props) {
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={darkState ? themeDark : themeLight}>
         <CssBaseline />
+        <Header darkState={darkState} handleThemeChange={handleThemeChange} />
         <Component {...pageProps} />
       </ThemeProvider>
     </ApolloProvider>
