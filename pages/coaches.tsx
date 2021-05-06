@@ -20,17 +20,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Index() {
+export default function Coaches() {
   const classes = useStyles();
-
   return (
     <Container maxWidth="lg">
       <Box p="1rem">
         <Typography variant="h4" component="h1" gutterBottom>
-          Coacheso
-        </Typography>
-        <Typography variant="h5" component="h2" gutterBottom>
-          What activity do you want coaching for?
+          Coaches
         </Typography>
         <Box m={2}>
           <form className={classes.root} noValidate autoComplete="off">

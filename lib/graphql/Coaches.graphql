@@ -1,0 +1,7 @@
+query Coaches($activity: String!) {
+  coaches(activity: $activity) {
+    _id
+    name
+    activities
+  }
+}
