@@ -15,10 +15,7 @@ class MyDocument extends Document {
     const initialProps = await Document.getInitialProps(context)
     return {
       ...initialProps,
-      styles: [
-        ...React.Children.toArray(initialProps.styles),
-        sheets.getStyleElement(),
-      ],
+      styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
     }
   }
 

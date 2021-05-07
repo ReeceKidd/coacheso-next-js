@@ -1,14 +1,7 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Link as LinkText,
-  Switch,
-} from "@material-ui/core";
-import Link from "next/link";
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import { AppBar, Toolbar, Typography, Button, Link as LinkText, Switch } from '@material-ui/core'
+import Link from 'next/link'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,17 +16,17 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
   },
-}));
+}))
 
 export default function Header({ darkState, handleThemeChange }) {
-  const classes = useStyles();
-  const links = [{ label: "Become a coach", href: "/become-a-coach" }]
+  const classes = useStyles()
+  const links = [{ label: 'Become a coach', href: '/become-a-coach' }]
     .filter((link) => link)
     .map(({ label, href }) => (
       <Link href={href} key={href}>
         <Button color="inherit">{label}</Button>
       </Link>
-    ));
+    ))
 
   return (
     <div className={classes.root}>
@@ -51,5 +44,5 @@ export default function Header({ darkState, handleThemeChange }) {
         </Toolbar>
       </AppBar>
     </div>
-  );
+  )
 }

@@ -4,13 +4,13 @@ import Link from 'next/link'
 
 export default function About() {
   return (
-    <Container maxWidth='sm'>
+    <Container maxWidth="sm">
       <Box my={4}>
-        <Typography variant='h4' component='h1' gutterBottom>
+        <Typography variant="h4" component="h1" gutterBottom>
           Next.js example
         </Typography>
-        <Link href='/'>
-          <Button variant='contained' color='primary'>
+        <Link href="/">
+          <Button variant="contained" color="primary">
             Go to the index page
           </Button>
         </Link>

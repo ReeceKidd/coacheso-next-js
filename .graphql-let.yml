@@ -1,7 +1,12 @@
-schema: 'lib/schema.graphqls'
-documents: '**/*.graphql'
+schema: "lib/schema.graphqls"
+documents: "**/*.graphql"
 plugins:
   - typescript
   - typescript-operations
   - typescript-react-apollo
 cacheDir: __generated__
+generates:
+  ./src/generated-models.ts:
+    plugins:
+      - typescript
+      - typescript-resolvers
