@@ -1,33 +1,32 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import React, { useState, useEffect } from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider } from "@material-ui/core/styles";
-import { ApolloProvider } from "@apollo/client";
+import React, { useState, useEffect } from 'react'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from '@material-ui/core/styles'
+import { ApolloProvider } from '@apollo/client'
 
-import { useApollo } from "../apollo";
+import { useApollo } from '../lib/apollo'
 
-import { themeDark, themeLight } from "../lib/theme";
+import { themeDark, themeLight } from '../lib/theme'
 
-import Header from "../components/Header";
+import Header from '../components/Header'
 
-export default function MyApp(props) {
-  const { Component, pageProps } = props;
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export default function MyApp(props): JSX.Element {
+  const { Component, pageProps } = props
 
-  const [darkState, setDarkState] = useState(false);
-  const handleThemeChange = () => {
-    setDarkState(!darkState);
-  };
+  const [darkState, setDarkState] = useState(false)
+  const handleThemeChange = (): void => {
+    setDarkState(!darkState)
+  }
 
-  const apolloClient = useApollo();
+  const apolloClient = useApollo()
 
   useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
+    const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles);
+      jssStyles.parentNode.removeChild(jssStyles)
     }
-  }, []);
+  }, [])
 
   return (
     <ApolloProvider client={apolloClient}>
@@ -37,5 +36,5 @@ export default function MyApp(props) {
         <Component {...pageProps} />
       </ThemeProvider>
     </ApolloProvider>
-  );
+  )
 }

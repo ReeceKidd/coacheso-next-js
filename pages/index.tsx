@@ -1,16 +1,12 @@
-import React from "react";
-import {
-  Container,
-  Typography,
-  Box,
-  TextField,
-  makeStyles,
-} from "@material-ui/core";
+import React, { useState } from 'react'
+import { Container, Typography, Box, TextField, makeStyles } from '@material-ui/core'
+
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   textField: {
     marginTop: theme.spacing(10),
@@ -18,10 +14,18 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(10),
     width: 100,
   },
-}));
+}))
 
-export default function Index() {
-  const classes = useStyles();
+export default function Index(): JSX.Element {
+  const classes = useStyles()
+  const router = useRouter()
+
+  const [activity, setActivity] = useState('')
+
+  const onSubmit = async (event) => {
+    event.preventDefault()
+    router.push(`/coaches?activity=${activity}`)
+  }
 
   return (
     <Container maxWidth="lg">
@@ -33,11 +37,15 @@ export default function Index() {
           What activity do you want coaching for?
         </Typography>
         <Box m={2}>
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="filled-basic" label="Enter your activity" />
+          <form className={classes.root} noValidate autoComplete="off" onSubmit={onSubmit}>
+            <TextField
+              id="filled-basic"
+              label="Enter your activity"
+              onChange={(e) => setActivity(e.target.value)}
+            />
           </form>
         </Box>
       </Box>
     </Container>
-  );
+  )
 }
