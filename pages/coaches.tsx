@@ -7,12 +7,11 @@ import Posts from 'components/Posts'
 export default function Coaches(): JSX.Element {
   const router = useRouter()
 
-  const activity = (router.query.activity as string)?.toLowerCase()
+  const activity = router.query.activity as string
 
   const { data, loading } = useCoachesQuery({
     variables: { activity },
   })
-
   return (
     <Container maxWidth="lg">
       <Box p="1rem">

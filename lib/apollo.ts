@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
 
 const client = new ApolloClient({
-  uri: 'https://coacheso-api-df9yx.ondigitalocean.app/graphql',
+  uri: 'http://localhost:2000/graphql',
   cache: new InMemoryCache(),
 })
 

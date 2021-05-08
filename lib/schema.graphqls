@@ -11,18 +11,16 @@ type Coach {
 
 input CoachInput {
   activities: [String!]!
-  id: ObjectId
+  name: String!
 }
 
 type Mutation {
   addCoach(input: CoachInput!): Coach!
 }
 
-"""
-Mongo object id scalar type
-"""
+"""Mongo object id scalar type"""
 scalar ObjectId
 
 type Query {
-  coaches(activity: String!): [Coach!]!
+  coaches(activity: String): [Coach!]!
 }

@@ -22,7 +22,7 @@ export default function Index(): JSX.Element {
 
   const [activity, setActivity] = useState('')
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event): Promise<void> => {
     event.preventDefault()
     router.push(`/coaches?activity=${activity}`)
   }

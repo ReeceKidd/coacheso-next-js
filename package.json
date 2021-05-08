@@ -5,7 +5,8 @@
   "main": "./build/index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "update-schemas": "npx graphql-let",
+    "build": "graphql-let && next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "test:unit": "jest",
     "prepare": "husky install",

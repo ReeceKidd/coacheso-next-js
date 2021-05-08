@@ -1,4 +1,4 @@
-query Coaches($activity: String!) {
+query Coaches($activity: String) {
   coaches(activity: $activity) {
     _id
     name
