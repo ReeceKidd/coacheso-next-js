@@ -4,7 +4,6 @@ const afterCallback: AfterCallback = (_req, _res, session) => {
   localStorage.setItem('id_token', session.idToken)
   localStorage.setItem('access_token', session.accessToken)
   localStorage.setItem('refresh_token', session.refreshToken)
-  console.log('Session', session)
   return session
 }
 

@@ -22,7 +22,6 @@ export default function Index(): JSX.Element {
   const router = useRouter()
 
   const { user } = useUser()
-  console.log('User', user)
 
   const [activity, setActivity] = useState('')
 

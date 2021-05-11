@@ -3,6 +3,10 @@ import renderer from 'react-test-renderer'
 
 import App from '../../pages/index'
 
+jest.mock('@auth0/nextjs-auth0', () => ({
+  useUser: jest.fn().mockResolvedValue({ username: 'user' }),
+}))
+
 describe('App', () => {
   describe('mounting', () => {
     it('should mount without error', () => {
