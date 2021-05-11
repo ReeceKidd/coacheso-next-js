@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Container, Typography, Box, TextField, makeStyles } from '@material-ui/core'
 
 import { useRouter } from 'next/router'
+import { useUser } from '@auth0/nextjs-auth0'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,9 @@ export default function Index(): JSX.Element {
   const classes = useStyles()
   const router = useRouter()
 
+  const { user } = useUser()
+  console.log('User', user)
+
   const [activity, setActivity] = useState('')
 
   const onSubmit = async (event): Promise<void> => {
@@ -29,6 +33,7 @@ export default function Index(): JSX.Element {
 
   return (
     <Container maxWidth="lg">
+      {user && <Typography>{`${JSON.stringify(user)}`}</Typography>}
       <Box p="1rem">
         <Typography variant="h4" component="h1" gutterBottom>
           Coacheso

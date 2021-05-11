@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
 import { ApolloProvider } from '@apollo/client'
+import { UserProvider } from '@auth0/nextjs-auth0'
 
 import { useApollo } from '../lib/apollo'
 
@@ -29,12 +30,14 @@ export default function MyApp(props): JSX.Element {
   }, [])
 
   return (
-    <ApolloProvider client={apolloClient}>
-      <ThemeProvider theme={darkState ? themeDark : themeLight}>
-        <CssBaseline />
-        <Header darkState={darkState} handleThemeChange={handleThemeChange} />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </ApolloProvider>
+    <UserProvider>
+      <ApolloProvider client={apolloClient}>
+        <ThemeProvider theme={darkState ? themeDark : themeLight}>
+          <CssBaseline />
+          <Header darkState={darkState} handleThemeChange={handleThemeChange} />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </ApolloProvider>
+    </UserProvider>
   )
 }

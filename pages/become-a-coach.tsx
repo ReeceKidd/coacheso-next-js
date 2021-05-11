@@ -3,6 +3,7 @@ import { Container, Typography, Box, TextField, Button } from '@material-ui/core
 
 import { CoachInput, useAddCoachMutation } from 'lib/graphql/AddCoach.graphql'
 import { useRouter } from 'next/router'
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 
 export default function BecomeACoach(): JSX.Element {
   const [name, setName] = useState('')
@@ -46,3 +47,5 @@ export default function BecomeACoach(): JSX.Element {
     </Container>
   )
 }
+
+export const getServerSideProps = withPageAuthRequired()

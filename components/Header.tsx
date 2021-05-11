@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { AppBar, Toolbar, Typography, Button, Link as LinkText, Switch } from '@material-ui/core'
 import Link from 'next/link'
+import { useUser } from '@auth0/nextjs-auth0'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,9 +19,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Header({ darkState, handleThemeChange }) {
+export default function Header({
+  darkState,
+  handleThemeChange,
+}: {
+  darkState: boolean
+  handleThemeChange: () => void
+}): JSX.Element {
   const classes = useStyles()
-  const links = [{ label: 'Become a coach', href: '/become-a-coach' }]
+  const { user } = useUser()
+  const links = [
+    !user && { label: 'Login', href: '/api/auth/login' },
+    user && { label: 'Become a coach', href: '/become-a-coach' },
+    user && { label: 'Logout', href: '/api/auth/logout' },
+  ]
     .filter((link) => link)
     .map(({ label, href }) => (
       <Link href={href} key={href}>
