@@ -3,7 +3,13 @@ import Document, { Head, Html, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/core'
 
 class MyDocument extends Document {
-  static async getInitialProps(context) {
+  static async getInitialProps(
+    context: any
+  ): Promise<{
+    styles: Record<string, unknown>[]
+    html: string
+    head?: JSX.Element[]
+  }> {
     // Render the app and get the context with collected side effects
     const sheets = new ServerStyleSheets()
     const originalRenderPage = context.renderPage
@@ -19,7 +25,7 @@ class MyDocument extends Document {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <Html>
         <Head>

@@ -1,9 +1,6 @@
 import { handleAuth, handleCallback, AfterCallback } from '@auth0/nextjs-auth0'
 
 const afterCallback: AfterCallback = (_req, _res, session) => {
-  localStorage.setItem('id_token', session.idToken)
-  localStorage.setItem('access_token', session.accessToken)
-  localStorage.setItem('refresh_token', session.refreshToken)
   return session
 }
 

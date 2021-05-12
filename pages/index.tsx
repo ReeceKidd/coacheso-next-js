@@ -3,6 +3,7 @@ import { Container, Typography, Box, TextField, makeStyles } from '@material-ui/
 
 import { useRouter } from 'next/router'
 import { useUser } from '@auth0/nextjs-auth0'
+import { useCurrentUserQuery } from '__generated__/lib/graphql/CurrentUser.graphql'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,8 @@ export default function Index(): JSX.Element {
     router.push(`/coaches?activity=${activity}`)
   }
 
+  const { data } = useCurrentUserQuery({})
+
   return (
     <Container maxWidth="lg">
       {user && <Typography>{`${JSON.stringify(user)}`}</Typography>}
@@ -48,6 +51,9 @@ export default function Index(): JSX.Element {
               onChange={(e) => setActivity(e.target.value)}
             />
           </form>
+        </Box>
+        <Box>
+          <Typography>Data: {JSON.stringify(data)}</Typography>
         </Box>
       </Box>
     </Container>
