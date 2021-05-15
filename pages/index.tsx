@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, Typography, Box, TextField, makeStyles } from '@material-ui/core'
 
 import { useRouter } from 'next/router'
-import { useCurrentUserQuery } from 'lib/graphql/CurrentUser.graphql'
+import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
 
 const useStyles = makeStyles((theme) => ({
   root: {
