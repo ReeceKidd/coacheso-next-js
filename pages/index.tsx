@@ -3,7 +3,7 @@ import { Container, Typography, Box, TextField, makeStyles } from '@material-ui/
 
 import { useRouter } from 'next/router'
 import { useUser } from '@auth0/nextjs-auth0'
-import { useCurrentUserQuery } from '__generated__/lib/graphql/CurrentUser.graphql'
+import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
 
 const useStyles = makeStyles((theme) => ({
   root: {
