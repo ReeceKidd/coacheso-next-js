@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Container, Typography, Box, TextField, makeStyles } from '@material-ui/core'
 
 import { useRouter } from 'next/router'
-import { useUser } from '@auth0/nextjs-auth0'
 import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
+import { useUser } from '@auth0/nextjs-auth0'
 
 const useStyles = makeStyles((theme) => ({
   root: {
