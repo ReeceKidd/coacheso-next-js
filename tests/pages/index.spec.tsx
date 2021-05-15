@@ -5,6 +5,8 @@ import App from '../../pages/index'
 
 jest.mock('@auth0/nextjs-auth0', () => ({
   useUser: jest.fn().mockResolvedValue({ username: 'user' }),
+}))
+jest.mock('../lib/graphql/CurrentUser.graphql', () => ({
   useCurrentUserQuery: jest.fn().mockResolvedValue({ username: 'user' }),
 }))
 
