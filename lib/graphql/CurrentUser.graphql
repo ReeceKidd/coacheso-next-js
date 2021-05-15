@@ -1,5 +1,12 @@
 query CurrentUser {
   currentUser {
     _id
+    email
+    emailVerified
+    familyName
+    givenName
+    locale
+    name
+    picture
   }
 }
