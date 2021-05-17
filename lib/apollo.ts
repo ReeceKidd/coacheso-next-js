@@ -4,6 +4,7 @@ const uri = process.env.NEXT_URL && `${process.env.NEXT_URL}/api/graphql`
 
 const httpLink = createHttpLink({
   uri,
+  credentials: 'include',
 })
 
 const client = new ApolloClient({
