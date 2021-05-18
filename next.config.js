@@ -1,7 +1,7 @@
 module.exports = {
   env: {
-    SERVER_URL:"http://localhost:2000/graphql",
-    NEXT_URL:"http://localhost:3000/api/graphql",
+    SERVER_URL:"http://localhost:2000",
+    NEXT_URL:"http://localhost:3000",
   },
   webpack(config, options) {
     config.module.rules.push({
