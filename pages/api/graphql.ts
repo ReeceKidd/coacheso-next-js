@@ -3,14 +3,14 @@ import { getSession } from '@auth0/nextjs-auth0'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const callAPI = async (body, headers) => {
-  const url = `${process.env.SERVER_URL}/graphql`
-  const res = await fetch(url, {
+  const res = await fetch(process.env.SERVER_URL, {
     method: 'post',
     headers: {
       'content-type': 'application/json',
       ...headers,
     },
     body: JSON.stringify(body),
+    cache: 'no-cache',
   })
   return {
     body: await res.text(),
