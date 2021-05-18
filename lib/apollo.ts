@@ -1,5 +1,6 @@
 import { ApolloClient, createHttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
 
+console.log('NEXT_URL', process.env.NEXT_URL)
 const uri = process.env.NEXT_URL && `${process.env.NEXT_URL}/api/graphql`
 
 const httpLink = createHttpLink({
