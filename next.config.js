@@ -1,7 +1,7 @@
 module.exports = {
   env: {
-    SERVER_URL:"http://localhost:2000",
-    NEXT_URL:"http://localhost:3000",
+    SERVER_URL:process.env.SERVER_URL,
+    NEXT_URL:process.env.NEXT_URL,
   },
   webpack(config, options) {
     config.module.rules.push({
