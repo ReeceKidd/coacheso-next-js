@@ -1,10 +1,10 @@
 import React from 'react'
-import Document, { Head, Html, Main, NextScript } from 'next/document'
+import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/core'
 
 class MyDocument extends Document {
   static async getInitialProps(
-    context: any
+    context: DocumentContext
   ): Promise<{
     styles: Record<string, unknown>[]
     html: string

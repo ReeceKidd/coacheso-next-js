@@ -41,7 +41,7 @@ export default async function graphql(req: NextApiRequest, res: NextApiResponse)
     })
     forwardResponse(res, apiRes)
   } catch (error) {
-    console.error(error)
+    console.error(JSON.stringify(error))
     res.status(error.status || 400).end(error.message)
   }
 }
