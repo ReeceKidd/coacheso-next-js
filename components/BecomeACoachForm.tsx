@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const CustomForm: React.FC<Props> = ({ onSubmit }): JSX.Element => {
+export const BecomeACoachForm: React.FC<Props> = ({ onSubmit }): JSX.Element => {
   const classes = useStyles()
   return (
     <Formik

@@ -3,7 +3,7 @@ import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0'
 import { Box, Container, Typography } from '@material-ui/core'
 import { useRouter } from 'next/router'
 
-import { CustomForm } from 'components/CustomForm'
+import { BecomeACoachForm } from 'components/BecomeACoachForm'
 import { useAddCoachMutation } from 'lib/graphql/AddCoach.graphql'
 
 export default function BecomeACoach(): JSX.Element {
@@ -19,11 +19,17 @@ export default function BecomeACoach(): JSX.Element {
         <Typography variant="h4" component="h1" gutterBottom>
           Become a coach
         </Typography>
-        <CustomForm
+        <BecomeACoachForm
           onSubmit={async ({ activity, title, background }) => {
             await addCoach({
               variables: {
-                input: { activities: [activity], name: user && user.name, title, background },
+                input: {
+                  activities: [activity],
+                  name: user && user.name,
+                  title,
+                  background,
+                  profilePicture: user && user.picture,
+                },
               },
             })
             router.push(`/coaches?activity=${activity}`)

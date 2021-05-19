@@ -9,9 +9,11 @@ export default function Coaches(): JSX.Element {
 
   const activity = router.query.activity as string
 
-  const { data, loading } = useCoachesQuery({
+  const { data, loading, error } = useCoachesQuery({
     variables: { activity },
   })
+  console.log('Data', data)
+  console.log('Error', error)
   return (
     <Container maxWidth="lg">
       <Box p="1rem">

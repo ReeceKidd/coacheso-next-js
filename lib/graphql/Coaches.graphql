@@ -3,5 +3,8 @@ query Coaches($activity: String) {
     _id
     name
     activities
+    title
+    background
+    profilePicture
   }
 }

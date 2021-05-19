@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { Coach } from 'lib/graphql/Coaches.graphql'
+import { CardMedia } from '@material-ui/core'
 
 interface Props {
   coaches: Coach[]
@@ -15,39 +16,45 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     marginTop: theme.spacing(4),
   },
-  card: {
+  cardActionArea: {
     display: 'flex',
-  },
-  cardDetails: {
-    flex: 1,
-  },
-  cardText: {
-    maxWidth: '26rem',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   cardMedia: {
-    width: 160,
+    width: 50,
+    height: 50,
   },
 }))
 
-export default function Posts(props: Props): JSX.Element {
+export default function Coaches(props: Props): JSX.Element {
   const styles = useStyles()
   const { coaches } = props
+  console.log('Coaches', coaches)
 
   return (
     <Grid container className={styles.container} spacing={4}>
       {coaches.map((coach) => (
-        <Grid item key={coach._id} xs={12} md={6}>
-          <CardActionArea component="a" href="#">
-            <Card className={styles.card}>
-              <div className={styles.cardDetails}>
-                <CardContent>
-                  <Typography component="h2" variant="h5" className={styles.cardText}>
-                    {coach.name}
-                  </Typography>
-                </CardContent>
-              </div>
-            </Card>
-          </CardActionArea>
+        <Grid item key={coach._id} xs={12} md={3}>
+          <Card>
+            <CardActionArea className={styles.cardActionArea}>
+              {coach.profilePicture && (
+                <CardMedia
+                  image={coach.profilePicture}
+                  title="Profile picture"
+                  className={styles.cardMedia}
+                />
+              )}
+              <CardContent>
+                <Typography component="h2" variant="h5">
+                  {coach.name}
+                </Typography>
+                <Typography component="p" variant="body1" color="textSecondary">
+                  {coach.title}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
         </Grid>
       ))}
     </Grid>
