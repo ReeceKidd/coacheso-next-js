@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { getSession } from '@auth0/nextjs-auth0'
+import { getAccessToken } from '@auth0/nextjs-auth0'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const callAPI = async (body, headers) => {
@@ -34,14 +34,12 @@ const forwardResponse = (res, apiRes) => {
 
 export default async function graphql(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   try {
-    const session = await getSession(req, res)
-
+    const { accessToken } = await getAccessToken(req, res)
     const apiRes = await callAPI(req.body, {
-      authorization: session ? `Bearer ${session.idToken}` : '',
+      authorization: accessToken ? `Bearer ${accessToken}` : '',
     })
     forwardResponse(res, apiRes)
   } catch (error) {
-    console.error(JSON.stringify(error))
     res.status(error.status || 400).end(error.message)
   }
 }

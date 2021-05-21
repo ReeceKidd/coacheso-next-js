@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function Coaches(props: Props): JSX.Element {
   const styles = useStyles()
   const { coaches } = props
-  console.log('Coaches', coaches)
 
   return (
     <Grid container className={styles.container} spacing={4}>
