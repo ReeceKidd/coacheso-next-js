@@ -1,6 +1,17 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBar, Toolbar, Typography, Button, Link as LinkText, Switch } from '@material-ui/core'
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Link as LinkText,
+  Switch,
+  MenuItem,
+  IconButton,
+  Avatar,
+} from '@material-ui/core'
+import AccountCircle from '@material-ui/icons/AccountCircle'
 import Link from 'next/link'
 import { useUser } from '@auth0/nextjs-auth0'
 
@@ -53,6 +64,17 @@ export default function Header({
           </Typography>
           <Switch checked={darkState} onChange={handleThemeChange} />
           {links}
+          {user && (
+            <MenuItem>
+              <IconButton color="inherit">
+                {user.picture ? (
+                  <Avatar src={user.picture} alt="User profile " />
+                ) : (
+                  <AccountCircle />
+                )}
+              </IconButton>
+            </MenuItem>
+          )}
         </Toolbar>
       </AppBar>
     </div>
