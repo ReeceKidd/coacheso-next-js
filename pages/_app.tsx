@@ -8,7 +8,7 @@ import { useApollo } from '../lib/apollo'
 
 import { themeDark, themeLight } from '../lib/theme'
 
-import Header from '../components/Header'
+import Header from '../components/Header/Header'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function MyApp(props): JSX.Element {

@@ -8,7 +8,7 @@ interface Values {
   background: string
 }
 
-interface Props {
+export interface BecomeACoachFormProps {
   onSubmit: (values: Values) => void
 }
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const BecomeACoachForm: React.FC<Props> = ({ onSubmit }): JSX.Element => {
+export const BecomeACoachForm: React.FC<BecomeACoachFormProps> = ({ onSubmit }): JSX.Element => {
   const classes = useStyles()
   return (
     <Formik

@@ -9,7 +9,7 @@ import { Coach } from 'lib/graphql/Coaches.graphql'
 import { CardMedia } from '@material-ui/core'
 import { useRouter } from 'next/router'
 
-interface Props {
+export interface PostsProps {
   coaches: Coach[]
 }
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export default function Coaches(props: Props): JSX.Element {
+export default function Posts(props: PostsProps): JSX.Element {
   const styles = useStyles()
   const router = useRouter()
   const { coaches } = props

@@ -3,7 +3,7 @@ import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0'
 import { Box, Container, Typography } from '@material-ui/core'
 import { useRouter } from 'next/router'
 
-import { BecomeACoachForm } from '../components/BecomeACoachForm'
+import { BecomeACoachForm } from '../components/BecomeACoachForm/BecomeACoachForm'
 
 import { useAddCoachMutation } from '../lib/graphql/AddCoach.graphql'
 

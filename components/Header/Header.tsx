@@ -31,13 +31,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Header({
-  darkState,
-  handleThemeChange,
-}: {
+export interface HeaderProps {
   darkState: boolean
   handleThemeChange: () => void
-}): JSX.Element {
+}
+
+export default function Header({ darkState, handleThemeChange }: HeaderProps): JSX.Element {
   const classes = useStyles()
   const { user } = useUser()
   const router = useRouter()
