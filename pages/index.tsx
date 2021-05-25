@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Container, Typography, Box, TextField, makeStyles } from '@material-ui/core'
 
 import { useRouter } from 'next/router'
-import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,8 +27,6 @@ export default function Index(): JSX.Element {
     router.push(`/coaches?activity=${activity}`)
   }
 
-  const { data } = useCurrentUserQuery()
-
   return (
     <Container maxWidth="lg">
       <Box p="1rem">
@@ -47,9 +44,6 @@ export default function Index(): JSX.Element {
               onChange={(e) => setActivity(e.target.value)}
             />
           </form>
-        </Box>
-        <Box>
-          <Typography>{JSON.stringify(data)}</Typography>
         </Box>
       </Box>
     </Container>

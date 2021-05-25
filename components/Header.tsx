@@ -14,6 +14,7 @@ import {
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Link from 'next/link'
 import { useUser } from '@auth0/nextjs-auth0'
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +40,7 @@ export default function Header({
 }): JSX.Element {
   const classes = useStyles()
   const { user } = useUser()
+  const router = useRouter()
   const links = [
     !user && { label: 'Login', href: '/api/auth/login' },
     user && { label: 'Become a coach', href: '/become-a-coach' },
@@ -65,7 +67,7 @@ export default function Header({
           <Switch checked={darkState} onChange={handleThemeChange} />
           {links}
           {user && (
-            <MenuItem>
+            <MenuItem onClick={() => router.push('/profile')}>
               <IconButton color="inherit">
                 {user.picture ? (
                   <Avatar src={user.picture} alt="User profile " />

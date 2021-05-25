@@ -3,8 +3,9 @@ import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0'
 import { Box, Container, Typography } from '@material-ui/core'
 import { useRouter } from 'next/router'
 
-import { BecomeACoachForm } from 'components/BecomeACoachForm'
-import { useAddCoachMutation } from 'lib/graphql/AddCoach.graphql'
+import { BecomeACoachForm } from '../components/BecomeACoachForm'
+
+import { useAddCoachMutation } from '../lib/graphql/AddCoach.graphql'
 
 export default function BecomeACoach(): JSX.Element {
   const { user } = useUser()
