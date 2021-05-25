@@ -7,6 +7,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { Coach } from 'lib/graphql/Coaches.graphql'
 import { CardMedia } from '@material-ui/core'
+import { useRouter } from 'next/router'
 
 interface Props {
   coaches: Coach[]
@@ -29,13 +30,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function Coaches(props: Props): JSX.Element {
   const styles = useStyles()
+  const router = useRouter()
   const { coaches } = props
 
   return (
     <Grid container className={styles.container} spacing={4}>
       {coaches.map((coach) => (
         <Grid item key={coach._id} xs={12} md={3}>
-          <Card>
+          <Card
+            onClick={() => {
+              router.push(`/coaches/${coach._id}`)
+            }}
+          >
             <CardActionArea className={styles.cardActionArea}>
               {coach.profilePicture && (
                 <CardMedia

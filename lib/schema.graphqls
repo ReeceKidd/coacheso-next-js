@@ -28,6 +28,7 @@ type Mutation {
 scalar ObjectId
 
 type Query {
+  coach(coachId: ObjectId!): Coach
   coaches(activity: String): [Coach!]!
   currentUser: User
   user(userId: ObjectId!): User
@@ -39,6 +40,7 @@ type User {
   emailVerified: String
   familyName: String
   givenName: String
+  isCoach: Boolean!
   locale: String
   name: String
   picture: String
