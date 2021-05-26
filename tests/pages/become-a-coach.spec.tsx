@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import App from '../../pages/become-a-coach'
+import BecomeACoach from '../../pages/become-a-coach'
 
 jest.mock('@auth0/nextjs-auth0', () => ({
   useUser: jest.fn(() => ({ username: 'user' })),
@@ -14,14 +14,14 @@ jest.mock('../../lib/graphql/AddCoach.graphql', () => ({
   useAddCoachMutation: jest.fn(() => [jest.fn(), { data: undefined }]),
 }))
 
-describe('App', () => {
+describe('BecomeACoach', () => {
   describe('mounting', () => {
     it('should mount without error', () => {
-      expect(() => renderer.create(<App />)).not.toThrow()
+      expect(() => renderer.create(<BecomeACoach />)).not.toThrow()
     })
 
     it('should unmount without error', () => {
-      const { unmount } = renderer.create(<App />)
+      const { unmount } = renderer.create(<BecomeACoach />)
 
       expect(() => unmount()).not.toThrow()
     })

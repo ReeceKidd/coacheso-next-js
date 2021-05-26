@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import App from '../../pages/coaches'
+import Coaches from '../../pages/coaches'
 
 jest.mock('next/router', () => ({
   useRouter: jest.fn(() => ({ query: { activity: 'tennis' } })),
@@ -13,14 +13,14 @@ jest.mock('../../lib/graphql/Coaches.graphql', () => ({
   })),
 }))
 
-describe('App', () => {
+describe('Coaches', () => {
   describe('mounting', () => {
     it('should mount without error', () => {
-      expect(() => renderer.create(<App />)).not.toThrow()
+      expect(() => renderer.create(<Coaches />)).not.toThrow()
     })
 
     it('should unmount without error', () => {
-      const { unmount } = renderer.create(<App />)
+      const { unmount } = renderer.create(<Coaches />)
 
       expect(() => unmount()).not.toThrow()
     })

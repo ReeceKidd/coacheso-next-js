@@ -42,7 +42,7 @@ export default function Header({ darkState, handleThemeChange }: HeaderProps): J
   const router = useRouter()
   const links = [
     !user && { label: 'Login', href: '/api/auth/login' },
-    user && { label: 'Become a coach', href: '/become-a-coach' },
+    user && { label: 'Switch to coaching', href: '/become-a-coach' },
     user && { label: 'Logout', href: '/api/auth/logout' },
   ]
     .filter((link) => link)
@@ -66,7 +66,7 @@ export default function Header({ darkState, handleThemeChange }: HeaderProps): J
           <Switch checked={darkState} onChange={handleThemeChange} />
           {links}
           {user && (
-            <MenuItem onClick={() => router.push('/profile')}>
+            <MenuItem onClick={() => router.push('/coaching-profile')}>
               <IconButton color="inherit">
                 {user.picture ? (
                   <Avatar src={user.picture} alt="User profile " />
