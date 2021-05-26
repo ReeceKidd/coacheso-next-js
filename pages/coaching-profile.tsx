@@ -7,7 +7,7 @@ export default function CoachingProfile(): JSX.Element {
   return (
     <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
       <Grid container spacing={4}>
-        <Grid item xs={3} spacing={4}>
+        <Grid item xs={3}>
           <Box
             border={1}
             borderColor="#ddd"
@@ -49,10 +49,14 @@ export default function CoachingProfile(): JSX.Element {
         </Grid>
         <Grid item xs={6}>
           <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
-            <Typography variant="h4" component="h1" gutterBottom>
-              Profile
+            <Typography variant="h5" component="h1" gutterBottom>
+              Students
             </Typography>
-            <Typography variant="inherit">{JSON.stringify(user)}</Typography>
+          </Box>
+          <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
+            <Typography variant="h5" component="h1" gutterBottom>
+              Reviews
+            </Typography>
           </Box>
         </Grid>
       </Grid>
