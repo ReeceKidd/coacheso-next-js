@@ -5,14 +5,14 @@ import { useRouter } from 'next/router'
 
 import { BecomeACoachForm } from '../components/BecomeACoachForm/BecomeACoachForm'
 
-import { useAddCoachMutation } from '../lib/graphql/AddCoach.graphql'
+import { useBecomeCoachMutation } from '../lib/graphql/BecomeCoach.graphql'
 
 export default function BecomeACoach(): JSX.Element {
   const { user } = useUser()
 
   const router = useRouter()
 
-  const [addCoach] = useAddCoachMutation()
+  const [becomeCoach] = useBecomeCoachMutation()
 
   return (
     <Container maxWidth="lg">
@@ -21,19 +21,18 @@ export default function BecomeACoach(): JSX.Element {
           Become a coach
         </Typography>
         <BecomeACoachForm
-          onSubmit={async ({ activity, title, background }) => {
-            await addCoach({
+          onSubmit={async ({ skill, title }) => {
+            await becomeCoach({
               variables: {
                 input: {
-                  activities: [activity],
                   name: user && user.name,
                   title,
-                  background,
+
                   profilePicture: user && user.picture,
                 },
               },
             })
-            router.push(`/coaches?activity=${activity}`)
+            router.push(`/coaches?skill=${skill}`)
           }}
         />
       </Box>

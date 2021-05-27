@@ -10,8 +10,8 @@ jest.mock('@auth0/nextjs-auth0', () => ({
 jest.mock('next/router', () => ({
   useRouter: jest.fn(() => ({ push: jest.fn(() => true) })),
 }))
-jest.mock('../../lib/graphql/AddCoach.graphql', () => ({
-  useAddCoachMutation: jest.fn(() => [jest.fn(), { data: undefined }]),
+jest.mock('../../lib/graphql/BecomeCoach.graphql', () => ({
+  useBecomeCoachMutation: jest.fn(() => [jest.fn(), { data: undefined }]),
 }))
 
 describe('BecomeACoach', () => {

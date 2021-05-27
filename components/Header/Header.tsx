@@ -42,7 +42,7 @@ export default function Header({ darkState, handleThemeChange }: HeaderProps): J
   const router = useRouter()
   const links = [
     !user && { label: 'Login', href: '/api/auth/login' },
-    user && { label: 'Switch to coaching', href: '/become-a-coach' },
+    user && { label: 'Switch to coaching', href: '/coaching-profile' },
     user && { label: 'Logout', href: '/api/auth/logout' },
   ]
     .filter((link) => link)

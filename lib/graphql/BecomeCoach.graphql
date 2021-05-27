@@ -1,0 +1,5 @@
+mutation BecomeCoach($input: CoachInput!) {
+  becomeCoach(input: $input) {
+    _id
+  }
+}

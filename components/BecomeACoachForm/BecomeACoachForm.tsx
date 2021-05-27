@@ -3,7 +3,7 @@ import { Form, Formik } from 'formik'
 import * as React from 'react'
 
 interface Values {
-  activity: string
+  skill: string
   title: string
   background: string
 }
@@ -24,7 +24,7 @@ export const BecomeACoachForm: React.FC<BecomeACoachFormProps> = ({ onSubmit }):
   const classes = useStyles()
   return (
     <Formik
-      initialValues={{ activity: '', title: '', background: '' }}
+      initialValues={{ skill: '', title: '', background: '' }}
       onSubmit={(values) => {
         onSubmit(values)
       }}
@@ -33,9 +33,9 @@ export const BecomeACoachForm: React.FC<BecomeACoachFormProps> = ({ onSubmit }):
         <Form className={classes.root}>
           <div>
             <TextField
-              placeholder="Activity"
-              name="activity"
-              value={values.activity}
+              placeholder="skill"
+              name="skill"
+              value={values.skill}
               onChange={handleChange}
               onBlur={handleBlur}
             />

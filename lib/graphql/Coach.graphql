@@ -2,9 +2,8 @@ query Coach($coachId: ObjectId!) {
   coach(coachId: $coachId) {
     _id
     name
-    activities
     title
-    background
     profilePicture
+    skills
   }
 }

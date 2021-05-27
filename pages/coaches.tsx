@@ -7,10 +7,10 @@ import Posts from '../components/Posts/Posts'
 export default function Coaches(): JSX.Element {
   const router = useRouter()
 
-  const activity = router.query.activity as string
+  const skill = router.query.skill as string
 
   const { data, loading } = useCoachesQuery({
-    variables: { activity },
+    variables: { skill },
   })
 
   return (

@@ -20,11 +20,11 @@ export default function Index(): JSX.Element {
   const classes = useStyles()
   const router = useRouter()
 
-  const [activity, setActivity] = useState('')
+  const [skill, setSkill] = useState('')
 
   const onSubmit = async (event): Promise<void> => {
     event.preventDefault()
-    router.push(`/coaches?activity=${activity}`)
+    router.push(`/coaches?skill=${skill}`)
   }
 
   return (
@@ -34,14 +34,14 @@ export default function Index(): JSX.Element {
           Coacheso
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          What activity do you want coaching for?
+          What skill do you want coaching for?
         </Typography>
         <Box m={2}>
           <form className={classes.root} noValidate autoComplete="off" onSubmit={onSubmit}>
             <TextField
               id="filled-basic"
-              label="Enter your activity"
-              onChange={(e) => setActivity(e.target.value)}
+              label="Enter your skill"
+              onChange={(e) => setSkill(e.target.value)}
             />
           </form>
         </Box>

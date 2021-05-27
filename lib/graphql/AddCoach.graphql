@@ -1,5 +1,0 @@
-mutation AddCoach($input: CoachInput!) {
-  addCoach(input: $input) {
-    _id
-  }
-}

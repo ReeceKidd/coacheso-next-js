@@ -1,10 +1,9 @@
-query Coaches($activity: String) {
-  coaches(activity: $activity) {
+query Coaches($skill: String) {
+  coaches(skill: $skill) {
     _id
     name
-    activities
     title
-    background
     profilePicture
+    skills
   }
 }
