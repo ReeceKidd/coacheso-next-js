@@ -1,0 +1,9 @@
+query CurrentCoach {
+  currentCoach {
+    _id
+    name
+    title
+    profilePicture
+    skills
+  }
+}

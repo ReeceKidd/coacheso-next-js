@@ -1,0 +1,7 @@
+mutation UpdateCoach($input: CoachInput!) {
+  updateCoach(input: $input) {
+    title
+    name
+    description
+  }
+}

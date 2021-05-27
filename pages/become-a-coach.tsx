@@ -27,7 +27,6 @@ export default function BecomeACoach(): JSX.Element {
                 input: {
                   name: user && user.name,
                   title,
-
                   profilePicture: user && user.picture,
                 },
               },

@@ -3,13 +3,12 @@ import { Form, Formik } from 'formik'
 import * as React from 'react'
 
 interface Values {
-  skill: string
   title: string
-  description: string
 }
 
-export interface BecomeACoachFormProps {
+export interface TitleFormProps {
   onSubmit: (values: Values) => void
+  title?: string
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -20,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const BecomeACoachForm: React.FC<BecomeACoachFormProps> = ({ onSubmit }): JSX.Element => {
+export const TitleForm: React.FC<TitleFormProps> = ({ onSubmit, title }): JSX.Element => {
   const classes = useStyles()
   return (
     <Formik
-      initialValues={{ skill: '', title: '', description: '' }}
+      initialValues={{ title: title || '' }}
       onSubmit={(values) => {
         onSubmit(values)
       }}
@@ -33,16 +32,7 @@ export const BecomeACoachForm: React.FC<BecomeACoachFormProps> = ({ onSubmit }):
         <Form className={classes.root}>
           <div>
             <TextField
-              placeholder="skill"
-              name="skill"
-              value={values.skill}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </div>
-          <div>
-            <TextField
-              placeholder="Title"
+              placeholder={title || values.title}
               name="title"
               value={values.title}
               onChange={handleChange}
@@ -50,21 +40,10 @@ export const BecomeACoachForm: React.FC<BecomeACoachFormProps> = ({ onSubmit }):
             />
           </div>
           <div>
-            <TextField
-              placeholder="Description"
-              name="description"
-              value={values.description}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </div>
-          <div>
             <Button variant="contained" color="primary" type="submit">
-              Submit
+              Update
             </Button>
           </div>
-
-          <pre>{JSON.stringify(values, null, 2)}</pre>
         </Form>
       )}
     </Formik>

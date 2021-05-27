@@ -1,9 +1,17 @@
 import React from 'react'
 import { Container, Typography, Box, Grid, Avatar } from '@material-ui/core'
 import { useUser } from '@auth0/nextjs-auth0'
+import { TitleForm } from '../components/TitleForm/TitleForm'
+import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
+import { useCurrentCoachQuery } from 'lib/graphql/CurrentCoach.graphql'
 
 export default function CoachingProfile(): JSX.Element {
   const { user } = useUser()
+  const { data } = useCurrentCoachQuery()
+  console.log('Data', data)
+  const title = data?.currentCoach?.title
+  const [updateCoach] = useUpdateCoachMutation()
+
   return (
     <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
       <Grid container spacing={4}>
@@ -36,6 +44,10 @@ export default function CoachingProfile(): JSX.Element {
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
             <Typography variant="h5">{'Title'}</Typography>
+            <TitleForm
+              title={title}
+              onSubmit={({ title }) => updateCoach({ variables: { input: { title } } })}
+            />
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
             <Typography variant="h5">{'Description'}</Typography>
