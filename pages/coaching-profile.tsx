@@ -8,6 +8,7 @@ import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
 export default function CoachingProfile(): JSX.Element {
   const { user } = useUser()
   const { data } = useCurrentCoachQuery()
+
   const [updateCoach] = useUpdateCoachMutation()
 
   const [title, setTitle] = useState('')

@@ -14,7 +14,7 @@ jest.mock('../../lib/graphql/UpdateCoach.graphql', () => ({
 }))
 jest.mock('../../lib/graphql/CurrentCoach.graphql', () => ({
   useCurrentCoachQuery: jest.fn(() => ({
-    data: { name: 'Coach', email: 'test@gmail.com' },
+    data: { currentCoach: { title: 'Tennis coach' } },
     loading: false,
   })),
 }))
