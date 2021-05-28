@@ -3,6 +3,7 @@ query CurrentCoach {
     _id
     name
     title
+    description
     profilePicture
     skills
   }

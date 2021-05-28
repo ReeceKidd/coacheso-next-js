@@ -4,6 +4,7 @@ import { useUser } from '@auth0/nextjs-auth0'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
+import { DescriptionForm } from 'components/DescriptionForm/DescriptionForm'
 
 export default function CoachingProfile(): JSX.Element {
   const { user } = useUser()
@@ -12,11 +13,14 @@ export default function CoachingProfile(): JSX.Element {
   const [updateCoach] = useUpdateCoachMutation()
 
   const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
 
   const [showTitleForm, setShowTitleForm] = useState(false)
+  const [showDescriptionForm, setShowDescriptionForm] = useState(false)
 
   useEffect(() => {
     setTitle(data?.currentCoach.title)
+    setDescription(data?.currentCoach.description)
   }, [data])
 
   return (
@@ -58,7 +62,6 @@ export default function CoachingProfile(): JSX.Element {
                 </Link>
               )}
             </div>
-
             <TitleForm
               showTitleForm={showTitleForm}
               setShowTitleForm={setShowTitleForm}
@@ -70,7 +73,23 @@ export default function CoachingProfile(): JSX.Element {
             />
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
-            <Typography variant="h5">{'Description'}</Typography>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography variant="h5">{'Description'}</Typography>
+              {!showTitleForm && (
+                <Link onClick={() => setShowDescriptionForm(!showDescriptionForm)} variant="body2">
+                  {'Edit description'}
+                </Link>
+              )}
+            </div>
+            <DescriptionForm
+              showDescriptionForm={showDescriptionForm}
+              setShowDescriptionForm={setShowDescriptionForm}
+              setDescription={setDescription}
+              description={description}
+              onSubmit={({ description }) => {
+                updateCoach({ variables: { input: { description } } })
+              }}
+            />
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
             <Typography variant="h5">{'Skills'}</Typography>
