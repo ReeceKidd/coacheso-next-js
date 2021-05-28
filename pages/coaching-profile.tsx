@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, Typography, Box, Grid, Avatar } from '@material-ui/core'
+import React, { useEffect, useState } from 'react'
+import { Container, Typography, Box, Grid, Avatar, Link } from '@material-ui/core'
 import { useUser } from '@auth0/nextjs-auth0'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
@@ -8,8 +8,15 @@ import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
 export default function CoachingProfile(): JSX.Element {
   const { user } = useUser()
   const { data } = useCurrentCoachQuery()
-  const title = data?.currentCoach?.title
   const [updateCoach] = useUpdateCoachMutation()
+
+  const [title, setTitle] = useState('')
+
+  const [showTitleForm, setShowTitleForm] = useState(false)
+
+  useEffect(() => {
+    setTitle(data?.currentCoach.title)
+  }, [data])
 
   return (
     <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
@@ -42,10 +49,23 @@ export default function CoachingProfile(): JSX.Element {
             </Box>
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
-            <Typography variant="h5">{'Title'}</Typography>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography variant="h5">{'Title'}</Typography>
+              {!showTitleForm && (
+                <Link onClick={() => setShowTitleForm(!showTitleForm)} variant="body2">
+                  {'Edit title'}
+                </Link>
+              )}
+            </div>
+
             <TitleForm
+              showTitleForm={showTitleForm}
+              setShowTitleForm={setShowTitleForm}
+              setTitle={setTitle}
               title={title}
-              onSubmit={({ title }) => updateCoach({ variables: { input: { title } } })}
+              onSubmit={({ title }) => {
+                updateCoach({ variables: { input: { title } } })
+              }}
             />
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
