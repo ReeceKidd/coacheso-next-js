@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Typography, Box, Grid, Avatar, Link } from '@material-ui/core'
 import { useUser } from '@auth0/nextjs-auth0'
-import { TitleForm } from '../components/TitleForm/TitleForm'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
-import { DescriptionForm } from 'components/DescriptionForm/DescriptionForm'
+import { TitleForm } from '../components/TitleForm/TitleForm'
+import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
 
 export default function CoachingProfile(): JSX.Element {
   const { user } = useUser()
