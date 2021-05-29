@@ -5,6 +5,8 @@ query CurrentCoach {
     title
     description
     profilePicture
-    skills
+    skills {
+      skill
+    }
   }
 }

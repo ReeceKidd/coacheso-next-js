@@ -3,5 +3,8 @@ mutation UpdateCoach($input: CoachInput!) {
     title
     name
     description
+    skills {
+      skill
+    }
   }
 }

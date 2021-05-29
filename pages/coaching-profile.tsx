@@ -5,28 +5,34 @@ import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
+import { SkillsForm } from 'components/SkillsForm/SkillsForm'
 
 export default function CoachingProfile(): JSX.Element {
   const { user } = useUser()
   const { data } = useCurrentCoachQuery()
 
+  console.log('Data')
+
   const [updateCoach] = useUpdateCoachMutation()
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [skill, setSkill] = useState('')
 
   const [showTitleForm, setShowTitleForm] = useState(false)
   const [showDescriptionForm, setShowDescriptionForm] = useState(false)
+  const [showSkillsForm, setShowSkillsForm] = useState(false)
 
   useEffect(() => {
     setTitle(data?.currentCoach.title)
     setDescription(data?.currentCoach.description)
+    setSkill(data?.currentCoach.skills[0]?.skill)
   }, [data])
 
   return (
     <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
       <Grid container spacing={4}>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <Box
             border={1}
             borderColor="#ddd"
@@ -73,7 +79,14 @@ export default function CoachingProfile(): JSX.Element {
             />
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                marginBottom: '5%',
+              }}
+            >
               <Typography variant="h5">{'Description'}</Typography>
               {!showTitleForm && (
                 <Link onClick={() => setShowDescriptionForm(!showDescriptionForm)} variant="body2">
@@ -92,10 +105,23 @@ export default function CoachingProfile(): JSX.Element {
             />
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
-            <Typography variant="h5">{'Skills'}</Typography>
-          </Box>
-          <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
-            <Typography variant="h5">{'Certifications'}</Typography>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography variant="h5">{'Skills'}</Typography>
+              {!showSkillsForm && (
+                <Link onClick={() => setShowSkillsForm(!showSkillsForm)} variant="body2">
+                  {'Edit skill'}
+                </Link>
+              )}
+            </div>
+            <SkillsForm
+              showSkillsForm={showSkillsForm}
+              setShowSkillsForm={setShowSkillsForm}
+              setSkills={setSkill}
+              skill={skill}
+              onSubmit={({ skill }) => {
+                updateCoach({ variables: { input: { skills: [{ skill }] } } })
+              }}
+            />
           </Box>
         </Grid>
         <Grid item xs={6}>
