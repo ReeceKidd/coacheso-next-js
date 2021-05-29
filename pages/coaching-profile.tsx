@@ -11,8 +11,6 @@ export default function CoachingProfile(): JSX.Element {
   const { user } = useUser()
   const { data } = useCurrentCoachQuery()
 
-  console.log('Data')
-
   const [updateCoach] = useUpdateCoachMutation()
 
   const [title, setTitle] = useState('')
