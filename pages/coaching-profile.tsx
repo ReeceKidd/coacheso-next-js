@@ -5,7 +5,7 @@ import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
-import { SkillsForm } from 'components/SkillsForm/SkillsForm'
+import { SkillsForm } from '../components/SkillsForm/SkillsForm'
 
 export default function CoachingProfile(): JSX.Element {
   const { user } = useUser()
