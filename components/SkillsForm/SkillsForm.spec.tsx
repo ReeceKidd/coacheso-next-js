@@ -11,7 +11,8 @@ describe('SkillsForm', () => {
       setShowSkillsForm: jest.fn(),
       setSkills: jest.fn(),
       showSkillsForm: false,
-      skill: 'Tennis',
+      skill: 'tennis',
+      availableSkills: ['tennis'],
     }
   })
   describe('mounting', () => {
@@ -24,6 +25,7 @@ describe('SkillsForm', () => {
             setSkills={mockProps.setSkills}
             showSkillsForm={mockProps.showSkillsForm}
             skill={mockProps.skill}
+            availableSkills={mockProps.availableSkills}
           />
         )
       ).not.toThrow()
@@ -37,6 +39,7 @@ describe('SkillsForm', () => {
           setSkills={mockProps.setSkills}
           showSkillsForm={mockProps.showSkillsForm}
           skill={mockProps.skill}
+          availableSkills={mockProps.availableSkills}
         />
       )
 

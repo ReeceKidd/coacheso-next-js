@@ -1,4 +1,12 @@
-import { TextField, Button, makeStyles, Typography } from '@material-ui/core'
+import {
+  Button,
+  makeStyles,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@material-ui/core'
 import { Form, Formik } from 'formik'
 import * as React from 'react'
 
@@ -12,6 +20,7 @@ export interface SkillsFormProps {
   onSubmit: (values: Values) => void
   setSkills: React.Dispatch<React.SetStateAction<string>>
   skill: string
+  availableSkills: string[]
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +37,7 @@ export const SkillsForm: React.FC<SkillsFormProps> = ({
   setSkills,
   onSubmit,
   skill,
+  availableSkills,
 }): JSX.Element => {
   const classes = useStyles()
 
@@ -40,18 +50,29 @@ export const SkillsForm: React.FC<SkillsFormProps> = ({
         setSkills(values.skill)
       }}
     >
-      {({ values, handleChange, handleBlur }) => (
+      {({ handleChange }) => (
         <Form className={classes.root}>
-          <div style={{ display: 'flex' }}>
-            <TextField
-              style={{ flexGrow: 1 }}
-              placeholder={'Enter your skill'}
+          <FormControl variant="outlined" style={{ display: 'flex', flexBasis: '25%' }}>
+            <InputLabel id="skill-search-label">Skill search</InputLabel>
+            <Select
+              labelId="skill-search-outline-label"
+              id="skill-search-select-outline"
+              value={skill}
               name="skill"
-              value={values.skill}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </div>
+              onChange={async (e) => {
+                handleChange(e)
+                setSkills(String(e.target.value))
+              }}
+              label="Skill"
+            >
+              {availableSkills.map((option, index) => (
+                <MenuItem key={index} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
           <div
             style={{
               display: 'flex',

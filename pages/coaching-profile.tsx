@@ -6,28 +6,32 @@ import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
 import { SkillsForm } from '../components/SkillsForm/SkillsForm'
+import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
 
 export default function CoachingProfile(): JSX.Element {
   const { user } = useUser()
-  const { data } = useCurrentCoachQuery()
+  const { data: coachData } = useCurrentCoachQuery()
+  const { data: skillsData } = useSkillsQuery()
 
   const [updateCoach] = useUpdateCoachMutation()
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [skill, setSkill] = useState('')
+  const [availableSkills, setAvailableSkills] = useState([])
 
   const [showTitleForm, setShowTitleForm] = useState(false)
   const [showDescriptionForm, setShowDescriptionForm] = useState(false)
   const [showSkillsForm, setShowSkillsForm] = useState(false)
 
   useEffect(() => {
-    setTitle(data?.currentCoach.title)
-    setDescription(data?.currentCoach.description)
-    if (data?.currentCoach.skills && data?.currentCoach.skills[0]) {
-      setSkill(data?.currentCoach.skills[0].skill)
+    setTitle(coachData?.currentCoach.title)
+    setDescription(coachData?.currentCoach.description)
+    if (coachData?.currentCoach.skills && coachData?.currentCoach.skills[0]) {
+      setSkill(coachData?.currentCoach.skills[0].skill)
     }
-  }, [data])
+    setAvailableSkills(skillsData?.skills.map((option) => option.skill) || [])
+  }, [coachData, skillsData])
 
   return (
     <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
@@ -118,6 +122,7 @@ export default function CoachingProfile(): JSX.Element {
               setShowSkillsForm={setShowSkillsForm}
               setSkills={setSkill}
               skill={skill}
+              availableSkills={availableSkills}
               onSubmit={({ skill }) => {
                 updateCoach({ variables: { input: { skills: [{ skill }] } } })
               }}
