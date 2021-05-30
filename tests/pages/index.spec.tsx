@@ -10,7 +10,7 @@ jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
   useCurrentUserQuery: jest.fn().mockResolvedValue({ username: 'user' }),
 }))
 jest.mock('../../lib/graphql/Skills.graphql', () => ({
-  useSkillsQuery: jest.fn().mockResolvedValue([{ skill: 'tennis' }]),
+  useSkillsQuery: jest.fn().mockResolvedValue({ data: { skills: [{ skill: 'tennis' }] } }),
 }))
 
 describe('App', () => {

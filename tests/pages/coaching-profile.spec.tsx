@@ -18,11 +18,14 @@ jest.mock('../../lib/graphql/CurrentCoach.graphql', () => ({
       currentCoach: {
         title: 'Tennis coach',
         description: 'Experienced tennis  coach',
-        skills: [{ skill: 'Tennis' }],
+        skills: [{ skill: 'tennis' }],
       },
     },
     loading: false,
   })),
+}))
+jest.mock('../../lib/graphql/Skills.graphql', () => ({
+  useSkillsQuery: jest.fn().mockResolvedValue({ data: { skills: [{ skill: 'tennis' }] } }),
 }))
 
 describe('CoachingProfile', () => {

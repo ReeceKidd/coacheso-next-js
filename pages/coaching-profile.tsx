@@ -3,10 +3,10 @@ import { Container, Typography, Box, Grid, Avatar, Link } from '@material-ui/cor
 import { useUser } from '@auth0/nextjs-auth0'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
+import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
 import { SkillsForm } from '../components/SkillsForm/SkillsForm'
-import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
 
 export default function CoachingProfile(): JSX.Element {
   const { user } = useUser()
@@ -28,9 +28,11 @@ export default function CoachingProfile(): JSX.Element {
     setTitle(coachData?.currentCoach.title)
     setDescription(coachData?.currentCoach.description)
     if (coachData?.currentCoach.skills && coachData?.currentCoach.skills[0]) {
-      setSkill(coachData?.currentCoach.skills[0].skill)
+      setSkill(coachData.currentCoach.skills[0].skill)
     }
-    setAvailableSkills(skillsData?.skills.map((option) => option.skill) || [])
+    if (skillsData?.skills) {
+      setAvailableSkills(skillsData.skills.map((option) => option.skill))
+    }
   }, [coachData, skillsData])
 
   return (
