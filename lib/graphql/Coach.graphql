@@ -4,6 +4,8 @@ query Coach($coachId: ObjectId!) {
     name
     title
     profilePicture
-    skills
+    skills {
+      skill
+    }
   }
 }

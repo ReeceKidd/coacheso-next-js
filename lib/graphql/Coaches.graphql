@@ -4,6 +4,9 @@ query Coaches($skill: String) {
     name
     title
     profilePicture
-    skills
+    skills {
+      skill
+    }
+    userId
   }
 }

@@ -1,31 +1,28 @@
-import React, { useState } from 'react'
-import { Container, Typography, Box, TextField, makeStyles } from '@material-ui/core'
+import React, { useEffect, useState } from 'react'
+import { Container, Typography, Box } from '@material-ui/core'
 
 import { useRouter } from 'next/router'
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginTop: theme.spacing(10),
-    marginLeft: theme.spacing(10),
-    marginRight: theme.spacing(10),
-    width: 100,
-  },
-}))
+import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
+import { SkillsSearchForm } from '../components/SkillsSearchForm/SkillsSearchForm'
 
 export default function Index(): JSX.Element {
-  const classes = useStyles()
   const router = useRouter()
+  const { data } = useSkillsQuery({
+    variables: {},
+  })
 
+  const [availableSkills, setAvailableSkills] = useState([])
   const [skill, setSkill] = useState('')
 
-  const onSubmit = async (event): Promise<void> => {
-    event.preventDefault()
+  const onSubmit = async (): Promise<void> => {
     router.push(`/coaches?skill=${skill}`)
   }
+
+  useEffect(() => {
+    if (data?.skills) {
+      setAvailableSkills(data.skills?.map((skill) => skill.skill))
+    }
+  }, [data])
 
   return (
     <Container maxWidth="lg">
@@ -34,16 +31,15 @@ export default function Index(): JSX.Element {
           Coacheso
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          What skill do you want coaching for?
+          What skill do you want coaching for? {skill}
         </Typography>
-        <Box m={2}>
-          <form className={classes.root} noValidate autoComplete="off" onSubmit={onSubmit}>
-            <TextField
-              id="filled-basic"
-              label="Enter your skill"
-              onChange={(e) => setSkill(e.target.value)}
-            />
-          </form>
+        <Box m={8}>
+          <SkillsSearchForm
+            onSubmit={onSubmit}
+            availableSkills={availableSkills}
+            setSkill={setSkill}
+            skill={skill}
+          />
         </Box>
       </Box>
     </Container>

@@ -9,6 +9,9 @@ jest.mock('@auth0/nextjs-auth0', () => ({
 jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
   useCurrentUserQuery: jest.fn().mockResolvedValue({ username: 'user' }),
 }))
+jest.mock('../../lib/graphql/Skills.graphql', () => ({
+  useSkillsQuery: jest.fn().mockResolvedValue([{ skill: 'tennis' }]),
+}))
 
 describe('App', () => {
   describe('mounting', () => {

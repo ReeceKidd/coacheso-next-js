@@ -24,7 +24,9 @@ export default function CoachingProfile(): JSX.Element {
   useEffect(() => {
     setTitle(data?.currentCoach.title)
     setDescription(data?.currentCoach.description)
-    setSkill(data?.currentCoach.skills[0]?.skill)
+    if (data?.currentCoach.skills && data?.currentCoach.skills[0]) {
+      setSkill(data?.currentCoach.skills[0].skill)
+    }
   }, [data])
 
   return (
