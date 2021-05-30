@@ -136,11 +136,14 @@ export default function CoachingProfile(): JSX.Element {
             <Typography variant="h5" component="h1" gutterBottom>
               Students
             </Typography>
+            <Typography>{`You don't have any students yet`}</Typography>
           </Box>
           <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Reviews
             </Typography>
+
+            <Typography>{`You don't have any reviews yet`}</Typography>
           </Box>
         </Grid>
       </Grid>

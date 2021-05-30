@@ -8,5 +8,7 @@ query CurrentCoach {
     skills {
       skill
     }
+    students
+    reviews
   }
 }
