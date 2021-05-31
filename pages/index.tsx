@@ -31,7 +31,7 @@ export default function Index(): JSX.Element {
           Coacheso
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          What skill do you want coaching for? {skill}
+          What skill do you want coaching for?
         </Typography>
         <Box m={8}>
           <SkillsSearchForm

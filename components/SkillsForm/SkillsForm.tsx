@@ -1,12 +1,5 @@
-import {
-  Button,
-  makeStyles,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from '@material-ui/core'
+import { Button, makeStyles, Typography, FormControl, TextField } from '@material-ui/core'
+import Autocomplete from '@material-ui/lab/Autocomplete'
 import { Form, Formik } from 'formik'
 import * as React from 'react'
 
@@ -53,24 +46,15 @@ export const SkillsForm: React.FC<SkillsFormProps> = ({
       {({ handleChange }) => (
         <Form className={classes.root}>
           <FormControl variant="outlined" style={{ display: 'flex', flexBasis: '25%' }}>
-            <InputLabel id="skill-search-label">Skill search</InputLabel>
-            <Select
-              labelId="skill-search-outline-label"
-              id="skill-search-select-outline"
-              value={skill}
-              name="skill"
-              onChange={async (e) => {
+            <Autocomplete
+              id="skill-search"
+              options={availableSkills}
+              onChange={async (e, value) => {
                 handleChange(e)
-                setSkills(String(e.target.value))
+                setSkills(String(value))
               }}
-              label="Skill"
-            >
-              {availableSkills.map((option, index) => (
-                <MenuItem key={index} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
+              renderInput={(params) => <TextField label="Skill" name="skill" {...params} />}
+            />
           </FormControl>
 
           <div

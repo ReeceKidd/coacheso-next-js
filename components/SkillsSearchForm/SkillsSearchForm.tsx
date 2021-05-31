@@ -1,6 +1,7 @@
-import { FormControl, InputLabel, Select, MenuItem, Button } from '@material-ui/core'
+import { FormControl, Button, TextField } from '@material-ui/core'
 import { Form, Formik } from 'formik'
 import * as React from 'react'
+import Autocomplete from '@material-ui/lab/Autocomplete'
 
 interface Values {
   skill: string
@@ -30,24 +31,15 @@ export const SkillsSearchForm: React.FC<SkillsSearchFormProps> = ({
       {({ handleChange }) => (
         <Form>
           <FormControl variant="outlined" style={{ display: 'flex', flexBasis: '25%' }}>
-            <InputLabel id="skill-search-label">Skill search</InputLabel>
-            <Select
-              labelId="skill-search-outline-label"
-              id="skill-search-select-outline"
-              value={skill}
-              name="skill"
-              onChange={async (e) => {
+            <Autocomplete
+              id="skill-search"
+              options={availableSkills}
+              onChange={async (e, value) => {
                 handleChange(e)
-                setSkill(String(e.target.value))
+                setSkill(String(value))
               }}
-              label="Skill"
-            >
-              {availableSkills.map((option, index) => (
-                <MenuItem key={index} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
+              renderInput={(params) => <TextField label="Skill" name="skill" {...params} />}
+            />
             <Button
               variant="contained"
               color="primary"
