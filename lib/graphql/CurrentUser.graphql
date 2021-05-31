@@ -1,6 +1,7 @@
 query CurrentUser {
   currentUser {
     _id
+    mode
     username
     email
     emailVerified

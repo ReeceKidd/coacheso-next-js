@@ -1,6 +1,7 @@
 mutation UpdateCurrentUser($input: UserInput!) {
   updateCurrentUser(input: $input) {
-      _id
+    _id
+    mode
     email
     emailVerified
     familyName

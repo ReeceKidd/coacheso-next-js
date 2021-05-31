@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   AppBar,
@@ -14,8 +14,9 @@ import {
 import SettingsIcon from '@material-ui/icons/Settings'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Link from 'next/link'
-import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
+import { useCurrentUserQuery, UserMode } from '../../lib/graphql/CurrentUser.graphql'
+import { useUpdateCurrentUserMutation } from 'lib/graphql/UpdateCurrentUser.graphql'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,17 +40,47 @@ export interface HeaderProps {
 
 export default function Header({ darkState, handleThemeChange }: HeaderProps): JSX.Element {
   const classes = useStyles()
-  const { user } = useUser()
+  const { data: currentUserData } = useCurrentUserQuery()
+  const currentUser = currentUserData?.currentUser
+  const [updateCurrentUser] = useUpdateCurrentUserMutation()
+
+  const [profilePicture, setProfilePicture] = useState('')
+  const [mode, setMode] = useState('')
+
+  useEffect(() => {
+    setProfilePicture(currentUserData?.currentUser.picture)
+    setMode(currentUserData?.currentUser.mode)
+  }, [currentUserData])
+
   const router = useRouter()
   const links = [
-    !user && { label: 'Login', href: '/api/auth/login' },
-    user && { label: 'Switch to coaching', href: '/coaching-profile' },
-    user && { label: 'Logout', href: '/api/auth/logout' },
+    !currentUser && { label: 'Login', href: '/api/auth/login' },
+    currentUser &&
+      mode === UserMode.Student && {
+        label: 'Switch to coaching',
+        href: '/coaching-profile',
+        onClick: () => {
+          setMode(UserMode.Coach)
+          updateCurrentUser({ variables: { input: { mode: UserMode.Coach } } })
+        },
+      },
+    currentUser &&
+      mode === UserMode.Coach && {
+        label: 'Switch to student',
+        href: '/student-profile',
+        onClick: () => {
+          setMode(UserMode.Student)
+          updateCurrentUser({ variables: { input: { mode: UserMode.Student } } })
+        },
+      },
+    currentUser && { label: 'Logout', href: '/api/auth/logout' },
   ]
     .filter((link) => link)
-    .map(({ label, href }) => (
+    .map(({ label, href, onClick }) => (
       <Link href={href} key={href}>
-        <Button color="inherit">{label}</Button>
+        <Button color="inherit" onClick={onClick}>
+          {label}
+        </Button>
       </Link>
     ))
 
@@ -66,11 +97,12 @@ export default function Header({ darkState, handleThemeChange }: HeaderProps): J
           </Typography>
           <Switch checked={darkState} onChange={handleThemeChange} />
           {links}
-          {user && (
+          {}
+          {currentUser && (
             <MenuItem onClick={() => router.push('/coaching-profile')}>
               <IconButton color="inherit">
-                {user.picture ? (
-                  <Avatar src={user.picture} alt="User profile " />
+                {profilePicture ? (
+                  <Avatar src={profilePicture} alt="User profile " />
                 ) : (
                   <AccountCircle />
                 )}

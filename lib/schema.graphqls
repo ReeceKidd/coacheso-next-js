@@ -62,13 +62,19 @@ type User {
   emailVerified: String
   familyName: String
   givenName: String
-  isCoach: Boolean
   locale: String
+  mode: UserMode!
   name: String
   picture: String
   username: String
 }
 
 input UserInput {
-  username: String!
+  mode: UserMode
+  username: String
+}
+
+enum UserMode {
+  coach
+  student
 }
