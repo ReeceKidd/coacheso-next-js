@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container, Box, Grid, Avatar, Typography, Link } from '@material-ui/core'
 import { UsernameForm } from '../components/UsernameForm/UsernameForm'
 import { useUpdateCurrentUserMutation } from '../lib/graphql/UpdateCurrentUser.graphql'
-import { useCurrentUserQuery } from 'lib/graphql/CurrentUser.graphql'
+import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
 
 export default function Settings(): JSX.Element {
   const { data: currentUserData } = useCurrentUserQuery()

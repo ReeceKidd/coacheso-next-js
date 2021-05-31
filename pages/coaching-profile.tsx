@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Typography, Box, Grid, Avatar, Link } from '@material-ui/core'
-import { useUser } from '@auth0/nextjs-auth0'
+import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
 import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
@@ -9,12 +9,15 @@ import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
 import { SkillsForm } from '../components/SkillsForm/SkillsForm'
 
 export default function CoachingProfile(): JSX.Element {
-  const { user } = useUser()
+  const { data: userData } = useCurrentUserQuery()
   const { data: coachData } = useCurrentCoachQuery()
   const { data: skillsData } = useSkillsQuery()
 
   const [updateCoach] = useUpdateCoachMutation()
 
+  const [profilePicture, setProfilePicture] = useState('')
+  const [name, setName] = useState('')
+  const [username, setUsernmae] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [skill, setSkill] = useState('')
@@ -25,6 +28,9 @@ export default function CoachingProfile(): JSX.Element {
   const [showSkillsForm, setShowSkillsForm] = useState(false)
 
   useEffect(() => {
+    setProfilePicture(userData?.currentUser.picture)
+    setName(userData?.currentUser.name)
+    setUsernmae(userData?.currentUser.username)
     setTitle(coachData?.currentCoach.title)
     setDescription(coachData?.currentCoach.description)
     if (coachData?.currentCoach.skills && coachData?.currentCoach.skills[0]) {
@@ -33,7 +39,7 @@ export default function CoachingProfile(): JSX.Element {
     if (skillsData?.skills) {
       setAvailableSkills(skillsData.skills.map((option) => option.skill))
     }
-  }, [coachData, skillsData])
+  }, [userData, coachData, skillsData])
 
   return (
     <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
@@ -54,12 +60,18 @@ export default function CoachingProfile(): JSX.Element {
           >
             <Box p="1rem">
               <Avatar
-                src={user?.picture}
+                src={profilePicture}
                 style={{
                   height: '70px',
                   width: '70px',
                 }}
               />
+            </Box>
+            <Box>
+              <Typography variant="h5">{name}</Typography>
+            </Box>
+            <Box>
+              <Typography variant="h6">{`@${username}`}</Typography>
             </Box>
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
