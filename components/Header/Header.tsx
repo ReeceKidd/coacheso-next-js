@@ -11,6 +11,7 @@ import {
   IconButton,
   Avatar,
 } from '@material-ui/core'
+import SettingsIcon from '@material-ui/icons/Settings'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Link from 'next/link'
 import { useUser } from '@auth0/nextjs-auth0'
@@ -76,6 +77,7 @@ export default function Header({ darkState, handleThemeChange }: HeaderProps): J
               </IconButton>
             </MenuItem>
           )}
+          <SettingsIcon onClick={() => router.push('/settings')} />
         </Toolbar>
       </AppBar>
     </div>

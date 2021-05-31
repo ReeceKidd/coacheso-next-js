@@ -61,9 +61,6 @@ export default function CoachingProfile(): JSX.Element {
                 }}
               />
             </Box>
-            <Box p="1rem">
-              <Typography variant="h5">{user?.name}</Typography>
-            </Box>
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
