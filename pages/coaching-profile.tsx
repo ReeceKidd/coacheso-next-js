@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Typography, Box, Grid, Avatar, Link } from '@material-ui/core'
+import { Container, Typography, Box, Grid, Avatar, Link, Button } from '@material-ui/core'
 import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
@@ -7,8 +7,10 @@ import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
 import { SkillsForm } from '../components/SkillsForm/SkillsForm'
+import { useRouter } from 'next/router'
 
 export default function CoachingProfile(): JSX.Element {
+  const router = useRouter()
   const { data: userData } = useCurrentUserQuery()
   const { data: coachData } = useCurrentCoachQuery()
   const { data: skillsData } = useSkillsQuery()
@@ -72,6 +74,11 @@ export default function CoachingProfile(): JSX.Element {
             </Box>
             <Box>
               <Typography variant="h6">{`@${username}`}</Typography>
+            </Box>
+            <Box style={{ display: 'flex' }}>
+              <Button variant="outlined" onClick={() => router.push('/coaching-profile-public')}>
+                Preview public mode
+              </Button>
             </Box>
           </Box>
           <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
