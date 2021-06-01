@@ -1,8 +1,9 @@
-query Coach($coachId: ObjectId!) {
-  coach(coachId: $coachId) {
+query Coach($username: String!) {
+  coach(username: $username) {
     _id
     name
     title
+    description
     profilePicture
     skills {
       skill

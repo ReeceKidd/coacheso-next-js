@@ -39,7 +39,7 @@ type Mutation {
 scalar ObjectId
 
 type Query {
-  coach(coachId: ObjectId!): Coach
+  coach(username: String!): Coach
   coaches(skill: String): [Coach!]!
   currentCoach: Coach
   currentUser: User
