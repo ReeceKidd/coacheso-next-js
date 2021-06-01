@@ -45,12 +45,12 @@ export default function Header({ darkState, handleThemeChange }: HeaderProps): J
   const [updateCurrentUser] = useUpdateCurrentUserMutation()
 
   const [profilePicture, setProfilePicture] = useState('')
-  const [mode, setMode] = useState('')
+  const [mode, setMode] = useState(currentUser?.mode || '')
 
   useEffect(() => {
-    setProfilePicture(currentUserData?.currentUser.picture)
-    setMode(currentUserData?.currentUser.mode)
-  }, [currentUserData])
+    setProfilePicture(currentUser?.picture)
+    setMode(currentUser?.mode)
+  }, [currentUser])
 
   const router = useRouter()
   const links = [
@@ -97,9 +97,14 @@ export default function Header({ darkState, handleThemeChange }: HeaderProps): J
           </Typography>
           <Switch checked={darkState} onChange={handleThemeChange} />
           {links}
-          {}
           {currentUser && (
-            <MenuItem onClick={() => router.push('/coaching-profile')}>
+            <MenuItem
+              onClick={() =>
+                currentUser.mode === UserMode.Coach
+                  ? router.push('/coaching-profile')
+                  : router.push('/student-profile')
+              }
+            >
               <IconButton color="inherit">
                 {profilePicture ? (
                   <Avatar src={profilePicture} alt="User profile " />
