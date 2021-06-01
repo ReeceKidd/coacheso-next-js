@@ -6,8 +6,29 @@ import Header, { HeaderProps } from '../../components/Header/Header'
 jest.mock('next/router', () => ({
   useRouter: jest.fn(() => ({ query: { activity: 'tennis' } })),
 }))
-jest.mock('@auth0/nextjs-auth0', () => ({
-  useUser: jest.fn().mockResolvedValue({ username: 'user' }),
+jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
+  UserMode: {
+    coach: 'coach',
+    student: 'student',
+  },
+  useCurrentUserQuery: jest.fn(() => ({
+    data: {
+      currentUser: {
+        name: 'Reece Kidd',
+        username: 'reece',
+        mode: 'coach',
+        picture:
+          'https://lh3.googleusercontent.com/a-/AOh14GhoDg_ewwIbsb4vMRZ_-i2CjiiiWCxd09V1RTV1Aw=s96-c',
+      },
+    },
+    loading: false,
+  })),
+}))
+jest.mock('../../lib/graphql/UpdateCurrentUser.graphql', () => ({
+  useUpdateCurrentUserMutation: jest.fn(() => [
+    jest.fn(),
+    { data: { currentUser: { name: 'Reece Kidd', username: 'reece', mode: 'student' } } },
+  ]),
 }))
 
 describe('Header', () => {

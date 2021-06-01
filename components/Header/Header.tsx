@@ -16,7 +16,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useCurrentUserQuery, UserMode } from '../../lib/graphql/CurrentUser.graphql'
-import { useUpdateCurrentUserMutation } from 'lib/graphql/UpdateCurrentUser.graphql'
+import { useUpdateCurrentUserMutation } from '../../lib/graphql/UpdateCurrentUser.graphql'
 
 const useStyles = makeStyles((theme) => ({
   root: {

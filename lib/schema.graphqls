@@ -59,7 +59,7 @@ input SkillInput {
 type User {
   _id: ObjectId!
   email: String!
-  emailVerified: String
+  emailVerified: Boolean
   familyName: String
   givenName: String
   locale: String
