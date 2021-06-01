@@ -36,7 +36,7 @@ export const SkillsSearchForm: React.FC<SkillsSearchFormProps> = ({
               options={availableSkills}
               onChange={async (e, value) => {
                 handleChange(e)
-                setSkill(String(value))
+                setSkill(value)
               }}
               renderInput={(params) => <TextField label="Skill" name="skill" {...params} />}
             />

@@ -11,7 +11,7 @@ export interface SkillsFormProps {
   showSkillsForm: boolean
   setShowSkillsForm: React.Dispatch<React.SetStateAction<boolean>>
   onSubmit: (values: Values) => void
-  setSkills: React.Dispatch<React.SetStateAction<string>>
+  setSkill: React.Dispatch<React.SetStateAction<string>>
   skill: string
   availableSkills: string[]
 }
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 export const SkillsForm: React.FC<SkillsFormProps> = ({
   showSkillsForm,
   setShowSkillsForm,
-  setSkills,
+  setSkill,
   onSubmit,
   skill,
   availableSkills,
@@ -40,7 +40,6 @@ export const SkillsForm: React.FC<SkillsFormProps> = ({
       onSubmit={(values) => {
         onSubmit(values)
         setShowSkillsForm(!showSkillsForm)
-        setSkills(values.skill)
       }}
     >
       {({ handleChange }) => (
@@ -51,9 +50,11 @@ export const SkillsForm: React.FC<SkillsFormProps> = ({
               options={availableSkills}
               onChange={async (e, value) => {
                 handleChange(e)
-                setSkills(String(value))
+                setSkill(value)
               }}
-              renderInput={(params) => <TextField label="Skill" name="skill" {...params} />}
+              renderInput={(params) => {
+                return <TextField label="Skill" name="skill" {...params} />
+              }}
             />
           </FormControl>
 

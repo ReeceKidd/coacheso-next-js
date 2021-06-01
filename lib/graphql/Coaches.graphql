@@ -1,6 +1,7 @@
 query Coaches($skill: String) {
   coaches(skill: $skill) {
     _id
+    username
     name
     title
     profilePicture

@@ -39,7 +39,7 @@ export default function Posts(props: PostsProps): JSX.Element {
         <Grid item key={coach._id} xs={12} md={3}>
           <Card
             onClick={() => {
-              router.push(`/coaches/${coach._id}`)
+              router.push(`/coaches/${coach.username}`)
             }}
           >
             <CardActionArea className={styles.cardActionArea}>

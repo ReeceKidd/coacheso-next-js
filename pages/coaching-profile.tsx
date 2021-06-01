@@ -138,10 +138,10 @@ export default function CoachingProfile(): JSX.Element {
             <SkillsForm
               showSkillsForm={showSkillsForm}
               setShowSkillsForm={setShowSkillsForm}
-              setSkills={setSkill}
+              setSkill={setSkill}
               skill={skill}
               availableSkills={availableSkills}
-              onSubmit={({ skill }) => {
+              onSubmit={() => {
                 updateCoach({ variables: { input: { skills: [{ skill }] } } })
               }}
             />
