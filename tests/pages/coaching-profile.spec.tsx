@@ -16,12 +16,6 @@ jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
     loading: false,
   })),
 }))
-jest.mock('../../lib/graphql/UpdateCoach.graphql', () => ({
-  useUpdateCoachMutation: jest.fn(() => [
-    jest.fn(),
-    { data: { currentCoach: { title: 'Tennis coach ' } } },
-  ]),
-}))
 jest.mock('../../lib/graphql/CurrentCoach.graphql', () => ({
   useCurrentCoachQuery: jest.fn(() => ({
     data: {
@@ -33,9 +27,6 @@ jest.mock('../../lib/graphql/CurrentCoach.graphql', () => ({
     },
     loading: false,
   })),
-}))
-jest.mock('../../lib/graphql/Skills.graphql', () => ({
-  useSkillsQuery: jest.fn().mockResolvedValue({ data: { skills: [{ skill: 'tennis' }] } }),
 }))
 
 describe('CoachingProfile', () => {

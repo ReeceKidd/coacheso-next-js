@@ -34,12 +34,17 @@ const forwardResponse = (res, apiRes) => {
 
 export default async function graphql(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   try {
-    const { accessToken } = await getAccessToken(req, res)
+    try {
+      const { accessToken } = await getAccessToken(req, res)
 
-    const apiRes = await callAPI(req.body, {
-      authorization: accessToken ? `Bearer ${accessToken}` : '',
-    })
-    forwardResponse(res, apiRes)
+      const apiRes = await callAPI(req.body, {
+        authorization: `Bearer ${accessToken}`,
+      })
+      forwardResponse(res, apiRes)
+    } catch (err) {
+      const apiRes = await callAPI(req.body, {})
+      forwardResponse(res, apiRes)
+    }
   } catch (error) {
     res.status(error.status || 400).end(error.message)
   }

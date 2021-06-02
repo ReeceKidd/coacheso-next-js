@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import CoachingProfilePublic from '../../pages/coaching-profile-public'
+import CoachingDashboard from '../../pages/coaching-dashboard'
 
 jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
   useCurrentUserQuery: jest.fn(() => ({
@@ -16,6 +16,12 @@ jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
     loading: false,
   })),
 }))
+jest.mock('../../lib/graphql/UpdateCoach.graphql', () => ({
+  useUpdateCoachMutation: jest.fn(() => [
+    jest.fn(),
+    { data: { currentCoach: { title: 'Tennis coach ' } } },
+  ]),
+}))
 jest.mock('../../lib/graphql/CurrentCoach.graphql', () => ({
   useCurrentCoachQuery: jest.fn(() => ({
     data: {
@@ -28,15 +34,18 @@ jest.mock('../../lib/graphql/CurrentCoach.graphql', () => ({
     loading: false,
   })),
 }))
+jest.mock('../../lib/graphql/Skills.graphql', () => ({
+  useSkillsQuery: jest.fn().mockResolvedValue({ data: { skills: [{ skill: 'tennis' }] } }),
+}))
 
-describe('CoachingProfilePublic', () => {
+describe('CoachingDashboard', () => {
   describe('mounting', () => {
     it('should mount without error', () => {
-      expect(() => renderer.create(<CoachingProfilePublic />)).not.toThrow()
+      expect(() => renderer.create(<CoachingDashboard />)).not.toThrow()
     })
 
     it('should unmount without error', () => {
-      const { unmount } = renderer.create(<CoachingProfilePublic />)
+      const { unmount } = renderer.create(<CoachingDashboard />)
 
       expect(() => unmount()).not.toThrow()
     })

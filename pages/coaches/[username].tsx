@@ -3,7 +3,7 @@ import { Container, Typography, Box, Grid, Avatar } from '@material-ui/core'
 import { useCoachQuery } from '../../lib/graphql/Coach.graphql'
 import { useRouter } from 'next/router'
 
-export default function CoachingProfilePublic(): JSX.Element {
+export default function CoachingProfile(): JSX.Element {
   const router = useRouter()
   const username = router.query.username as string
 
