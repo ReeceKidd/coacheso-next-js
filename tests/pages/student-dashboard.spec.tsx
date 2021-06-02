@@ -3,6 +3,9 @@ import renderer from 'react-test-renderer'
 
 import StudentDashboard from '../../pages/student-dashboard'
 
+jest.mock('../../lib/graphql/Skills.graphql', () => ({
+  useSkillsQuery: jest.fn().mockResolvedValue({ data: { skills: [{ skill: 'tennis' }] } }),
+}))
 jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
   useCurrentUserQuery: jest.fn(() => ({
     data: {

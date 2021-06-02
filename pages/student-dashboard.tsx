@@ -3,8 +3,8 @@ import { Container, Typography, Box, Grid, Avatar } from '@material-ui/core'
 import { useRouter } from 'next/router'
 
 import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
-import { useSkillsQuery } from 'lib/graphql/Skills.graphql'
-import { SkillsSearchForm } from 'components/SkillsSearchForm/SkillsSearchForm'
+import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
+import { SkillsSearchForm } from '../components/SkillsSearchForm/SkillsSearchForm'
 
 export default function StudentDashboard(): JSX.Element {
   const router = useRouter()
