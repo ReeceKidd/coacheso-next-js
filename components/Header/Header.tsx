@@ -13,7 +13,6 @@ export default function Header({ darkState, handleThemeChange }: HeaderProps): J
   const { user } = useUser()
 
   if (user) {
-    console.log('Entered')
     return <AuthenticatedHeader darkState={darkState} handleThemeChange={handleThemeChange} />
   }
   return <UnauthenticatedHeader darkState={darkState} handleThemeChange={handleThemeChange} />
