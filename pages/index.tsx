@@ -14,10 +14,6 @@ export default function Index(): JSX.Element {
   const [availableSkills, setAvailableSkills] = useState([])
   const [skill, setSkill] = useState('')
 
-  const onSubmit = async (): Promise<void> => {
-    router.push(`/coaches?skill=${skill}`)
-  }
-
   useEffect(() => {
     if (data?.skills) {
       setAvailableSkills(data.skills?.map((skill) => skill.skill))
@@ -35,7 +31,7 @@ export default function Index(): JSX.Element {
         </Typography>
         <Box m={8}>
           <SkillsSearchForm
-            onSubmit={onSubmit}
+            onSubmit={() => router.push(`/coaches?skill=${skill}`)}
             availableSkills={availableSkills}
             setSkill={setSkill}
             skill={skill}

@@ -70,7 +70,7 @@ export default function AuthenticatedHeader({
     currentUser &&
       mode === UserMode.Coach && {
         label: 'Switch to student',
-        href: '/student-profile',
+        href: '/student-dashboard',
         onClick: () => {
           setMode(UserMode.Student)
           updateCurrentUser({ variables: { input: { mode: UserMode.Student } } })
@@ -92,7 +92,13 @@ export default function AuthenticatedHeader({
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Link href={currentUser && mode === UserMode.Coach ? '/coaching-dashboard' : '/'}>
+            <Link
+              href={
+                currentUser && mode === UserMode.Coach
+                  ? '/coaching-dashboard'
+                  : '/student-dashboard'
+              }
+            >
               <LinkText href="" color="inherit">
                 Coacheso
               </LinkText>
@@ -105,7 +111,7 @@ export default function AuthenticatedHeader({
               onClick={() =>
                 currentUser.mode === UserMode.Coach
                   ? router.push('/coaching-dashboard')
-                  : router.push('/student-profile')
+                  : router.push('/student-dashboard')
               }
             >
               <IconButton color="inherit">

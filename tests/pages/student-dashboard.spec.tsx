@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import StudentProfile from '../../pages/student-profile'
+import StudentDashboard from '../../pages/student-dashboard'
 
 jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
   useCurrentUserQuery: jest.fn(() => ({
@@ -17,14 +17,14 @@ jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
   })),
 }))
 
-describe('StudentProfile', () => {
+describe('StudentDashboard', () => {
   describe('mounting', () => {
     it('should mount without error', () => {
-      expect(() => renderer.create(<StudentProfile />)).not.toThrow()
+      expect(() => renderer.create(<StudentDashboard />)).not.toThrow()
     })
 
     it('should unmount without error', () => {
-      const { unmount } = renderer.create(<StudentProfile />)
+      const { unmount } = renderer.create(<StudentDashboard />)
 
       expect(() => unmount()).not.toThrow()
     })
