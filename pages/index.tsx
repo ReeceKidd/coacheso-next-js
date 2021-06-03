@@ -37,13 +37,13 @@ export default function Index(): JSX.Element {
 
   return (
     <Grid container spacing={5}>
-      <Grid item md={7}>
-        <Box m={5}>
+      <Grid item md={7} xs={10}>
+        <Box m={15}>
           <Typography variant="h2" component="h2">
             Improve rapidly with a coach
           </Typography>
           <Typography variant="h4" component="h4" gutterBottom>
-            What skill do you want coaching for?
+            What skill do you want help with?
           </Typography>
           <SkillsSearchForm
             onSubmit={() => router.push(`/coaches?skill=${skill}`)}
@@ -53,7 +53,7 @@ export default function Index(): JSX.Element {
           />
         </Box>
       </Grid>
-      <Grid item md={5}>
+      <Grid item md={5} xs={1}>
         <div style={{ position: 'absolute' }}>
           <Image src="/purple-circle.png" width="800" height="400" />
         </div>
