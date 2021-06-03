@@ -43,7 +43,9 @@ export default function UnauthenticatedHeader({
           </Typography>
           <Switch checked={darkState} onChange={handleThemeChange} />
           <Link href={'/api/auth/login'}>
-            <Button color="inherit">{'Login'}</Button>
+            <Button variant="outlined" color="inherit">
+              {'Login'}
+            </Button>
           </Link>
         </Toolbar>
       </AppBar>

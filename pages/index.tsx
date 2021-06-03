@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Typography, Box } from '@material-ui/core'
+import { Container, Typography, Box, Grid } from '@material-ui/core'
+import Image from 'next/image'
 
 import { useRouter } from 'next/router'
 import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
@@ -22,22 +23,29 @@ export default function Index(): JSX.Element {
 
   return (
     <Container maxWidth="lg">
-      <Box p="1rem">
-        <Typography variant="h4" component="h1" gutterBottom>
-          Coacheso
-        </Typography>
-        <Typography variant="h5" component="h2" gutterBottom>
-          What skill do you want coaching for?
-        </Typography>
-        <Box m={8}>
-          <SkillsSearchForm
-            onSubmit={() => router.push(`/coaches?skill=${skill}`)}
-            availableSkills={availableSkills}
-            setSkill={setSkill}
-            skill={skill}
-          />
-        </Box>
-      </Box>
+      <Grid container spacing={4}>
+        <Grid item sm={6}>
+          <Box m={6}>
+            <Typography variant="h2" component="h2">
+              Improve rapidly with a coach
+            </Typography>
+            <Typography variant="h4" component="h4" gutterBottom>
+              What skill do you want coaching for?
+            </Typography>
+            <SkillsSearchForm
+              onSubmit={() => router.push(`/coaches?skill=${skill}`)}
+              availableSkills={availableSkills}
+              setSkill={setSkill}
+              skill={skill}
+            />
+          </Box>
+        </Grid>
+        <Grid item sm={6}>
+          <Box m={6}>
+            <Image src="/rocket.png" width="500" height="500" />
+          </Box>
+        </Grid>
+      </Grid>
     </Container>
   )
 }
