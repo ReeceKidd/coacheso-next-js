@@ -61,6 +61,63 @@ export default function Index(): JSX.Element {
           <Image className={classes.foregroundImage} src="/rocket.png" width="500" height="500" />
         </div>
       </Grid>
+      <Grid
+        item
+        xs={12}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <Typography variant="h3" component="h3">
+          How it works
+        </Typography>
+      </Grid>
+      <Grid
+        item
+        md={4}
+        xs={12}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Image src="/person-exploring.png" width="200" height="200" />
+        <Typography variant="h4" component="h4">
+          Find a coach
+        </Typography>
+      </Grid>
+      <Grid
+        item
+        md={4}
+        xs={12}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Image src="/calendar.png" width="200" height="200" />
+        <Typography variant="h4" component="h4">
+          Book a lesson
+        </Typography>
+      </Grid>
+      <Grid
+        item
+        md={4}
+        xs={12}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Image src="/person-balloons.png" width="200" height="200" />
+        <Typography variant="h4" component="h4">
+          Improve rapidly
+        </Typography>
+      </Grid>
     </Grid>
   )
 }
