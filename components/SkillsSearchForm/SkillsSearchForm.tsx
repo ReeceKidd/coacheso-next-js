@@ -1,7 +1,8 @@
-import { FormControl, Button, TextField } from '@material-ui/core'
+import { FormControl, TextField, IconButton } from '@material-ui/core'
 import { Form, Formik } from 'formik'
 import * as React from 'react'
 import Autocomplete from '@material-ui/lab/Autocomplete'
+import SearchIcon from '@material-ui/icons/Search'
 
 interface Values {
   skill: string
@@ -24,30 +25,33 @@ export const SkillsSearchForm: React.FC<SkillsSearchFormProps> = ({
     <Formik
       initialValues={{ skill: skill || '' }}
       onSubmit={(values) => {
+        console.log(values)
         onSubmit(values)
         setSkill(values.skill)
       }}
     >
       {({ handleChange }) => (
         <Form>
-          <FormControl variant="outlined" style={{ display: 'flex', flexBasis: '25%' }}>
+          <FormControl variant="outlined">
             <Autocomplete
               id="skill-search"
+              style={{ display: 'flex', minWidth: '200%' }}
               options={availableSkills}
               onChange={async (e, value) => {
                 handleChange(e)
                 setSkill(value)
               }}
-              renderInput={(params) => <TextField label="Skill" name="skill" {...params} />}
+              renderInput={(params) => {
+                return (
+                  <>
+                    <TextField label="Skill" name="skill" {...params} />
+                    <IconButton type="submit">
+                      <SearchIcon />
+                    </IconButton>
+                  </>
+                )
+              }}
             />
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              style={{ flexGrow: 1, margin: '5%' }}
-            >
-              Search
-            </Button>
           </FormControl>
         </Form>
       )}
