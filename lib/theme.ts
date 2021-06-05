@@ -7,6 +7,9 @@ const themeDark = createMuiTheme({
     secondary: { main: grey[400] },
     type: 'dark',
   },
+  typography: {
+    fontFamily: ['Crimson Text', 'Serif'].join(''),
+  },
 })
 
 const themeLight = createMuiTheme({
@@ -14,6 +17,9 @@ const themeLight = createMuiTheme({
     primary: { main: grey[800] },
     secondary: { main: grey[900] },
     type: 'light',
+  },
+  typography: {
+    fontFamily: ['Crimson Text', 'Serif'].join(''),
   },
 })
 

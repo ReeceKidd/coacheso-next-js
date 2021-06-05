@@ -45,7 +45,7 @@ export const SkillsSearchForm: React.FC<SkillsSearchFormProps> = ({
                 return (
                   <>
                     <TextField label="Skill" name="skill" {...params} />
-                    <IconButton type="submit">
+                    <IconButton type="submit" color="inherit">
                       <SearchIcon />
                     </IconButton>
                   </>

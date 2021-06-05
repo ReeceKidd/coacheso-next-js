@@ -1,26 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Typography, Box, Grid, makeStyles } from '@material-ui/core'
+import { Typography, Box, Grid } from '@material-ui/core'
 import Image from 'next/image'
 
 import { useRouter } from 'next/router'
 import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
 import { SkillsSearchForm } from '../components/SkillsSearchForm/SkillsSearchForm'
 
-const useStyles = makeStyles({
-  imageBox: {},
-  relativeBox: {
-    position: 'relative',
-  },
-  backgroundImage: {
-    alignSelf: 'center',
-  },
-  foregroundImage: {
-    position: 'absolute',
-  },
-})
-
 export default function Index(): JSX.Element {
-  const classes = useStyles()
   const router = useRouter()
   const { data } = useSkillsQuery({
     variables: {},
@@ -36,30 +22,32 @@ export default function Index(): JSX.Element {
   }, [data])
 
   return (
-    <Grid container spacing={5}>
-      <Grid item md={7} xs={10}>
-        <Box m={15}>
-          <Typography variant="h2" component="h2">
-            Improve rapidly with a coach
-          </Typography>
-          <Typography variant="h4" component="h4" gutterBottom>
-            What skill do you want help with?
-          </Typography>
-          <SkillsSearchForm
-            onSubmit={() => router.push(`/coaches?skill=${skill}`)}
-            availableSkills={availableSkills}
-            setSkill={setSkill}
-            skill={skill}
-          />
+    <Grid container>
+      <Grid item md={6} xs={10}>
+        <Box m={15} style={{ display: 'flex', alignItems: 'center' }}>
+          <Box>
+            <Typography variant="h1" component="h1">
+              Improve rapidly with a coach
+            </Typography>
+            <Typography variant="h4" component="h4" gutterBottom>
+              What skill do you want help with?
+            </Typography>
+            <SkillsSearchForm
+              onSubmit={() => router.push(`/coaches?skill=${skill}`)}
+              availableSkills={availableSkills}
+              setSkill={setSkill}
+              skill={skill}
+            />
+          </Box>
         </Box>
       </Grid>
-      <Grid item md={5} xs={1}>
-        <div style={{ position: 'absolute' }}>
-          <Image src="/purple-circle.png" width="800" height="400" />
-        </div>
-        <div style={{ position: 'absolute' }}>
-          <Image className={classes.foregroundImage} src="/rocket.png" width="500" height="500" />
-        </div>
+      <Grid
+        item
+        md={6}
+        xs={2}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flexStart' }}
+      >
+        <Image src="/rocket.png" width="500" height="500" />
       </Grid>
       <Grid
         item
