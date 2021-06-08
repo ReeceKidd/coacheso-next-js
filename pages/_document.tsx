@@ -27,14 +27,14 @@ class MyDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <script
             async
             defer
             data-domain="coacheso.com"
             src="https://plausible.io/js/plausible.js"
-          ></script>
+          />
           <body>
             <Main />
             <NextScript />

@@ -30,7 +30,7 @@ const SkillsSearchBlock = ({ icon, title, content }: SkillsSearchBlockProps): JS
     <Container>
       <Fade direction="left">
         <Grid container style={{ display: 'flex', alignItems: 'center' }}>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <Box m={10}>
               <Typography variant="h2" component="h2" gutterBottom>
                 {title}
@@ -46,7 +46,7 @@ const SkillsSearchBlock = ({ icon, title, content }: SkillsSearchBlockProps): JS
               />
             </Box>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} sm={6}>
             <Box m={10}>
               <SvgIcon src={icon} width="100%" height="100%" />
             </Box>
