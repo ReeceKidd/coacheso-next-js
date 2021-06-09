@@ -9,7 +9,7 @@ describe('SkillsForm', () => {
     mockProps = {
       onSubmit: jest.fn(),
       setShowSkillsForm: jest.fn(),
-      setSkills: jest.fn(),
+      setSkill: jest.fn(),
       showSkillsForm: false,
       skill: 'tennis',
       availableSkills: ['tennis'],
@@ -22,7 +22,7 @@ describe('SkillsForm', () => {
           <SkillsForm
             onSubmit={mockProps.onSubmit}
             setShowSkillsForm={mockProps.setShowSkillsForm}
-            setSkills={mockProps.setSkills}
+            setSkill={mockProps.setSkill}
             showSkillsForm={mockProps.showSkillsForm}
             skill={mockProps.skill}
             availableSkills={mockProps.availableSkills}
@@ -36,7 +36,7 @@ describe('SkillsForm', () => {
         <SkillsForm
           onSubmit={mockProps.onSubmit}
           setShowSkillsForm={mockProps.setShowSkillsForm}
-          setSkills={mockProps.setSkills}
+          setSkill={mockProps.setSkill}
           showSkillsForm={mockProps.showSkillsForm}
           skill={mockProps.skill}
           availableSkills={mockProps.availableSkills}

@@ -1,7 +1,11 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import { Metadata, MetadataProps } from '../../components/Metadata/Metadata'
+import Metadata, { MetadataProps } from '../../components/Metadata/Metadata'
+
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(() => ({ pathname: '/' })),
+}))
 
 describe('Metadata', () => {
   let mockProps: MetadataProps

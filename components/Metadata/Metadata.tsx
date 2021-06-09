@@ -6,7 +6,7 @@ export interface MetadataProps {
   description: string
 }
 
-export const Metadata = ({ title, description }: MetadataProps): JSX.Element => {
+const Metadata = ({ title, description }: MetadataProps): JSX.Element => {
   const site = 'https://coacheso.com'
   const canonicalURL = site + useRouter().pathname
   return (
@@ -24,3 +24,5 @@ export const Metadata = ({ title, description }: MetadataProps): JSX.Element => 
     </Head>
   )
 }
+
+export default Metadata

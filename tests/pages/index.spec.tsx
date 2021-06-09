@@ -3,15 +3,13 @@ import renderer from 'react-test-renderer'
 
 import App from '../../pages/index'
 
-jest.mock('@auth0/nextjs-auth0', () => ({
-  useUser: jest.fn().mockResolvedValue({ username: 'user' }),
-}))
-jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
-  useCurrentUserQuery: jest.fn().mockResolvedValue({ username: 'user' }),
-}))
-jest.mock('../../lib/graphql/Skills.graphql', () => ({
-  useSkillsQuery: jest.fn().mockResolvedValue({ data: { skills: [{ skill: 'tennis' }] } }),
-}))
+jest.mock('../../components/Metadata/Metadata', () => () => 'Metadata')
+jest.mock('../../components/SkillsSearchBlock/SkillsSearchBlock', () => () => 'SkillsSearchBlock')
+jest.mock('../../components/MiddleContentBlock/MiddleContentBlock', () => () =>
+  'MiddleContentBlock'
+)
+jest.mock('../../components/LeftContentBlock/LeftContentBlock', () => () => 'LeftContentBlock')
+jest.mock('../../components/RightContentBlock/RightContentBlock', () => () => 'RightContentBlock')
 
 describe('App', () => {
   describe('mounting', () => {

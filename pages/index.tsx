@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
 
-import { Metadata } from '../components/Metadata/Metadata'
+import Metadata from '../components/Metadata/Metadata'
 import SkillsSearchBlock from '../components/SkillsSearchBlock/SkillsSearchBlock'
 import MiddleContentBlock from '../components/MiddleContentBlock/MiddleContentBlock'
 import LeftContentBlock from '../components/LeftContentBlock/LeftContentBlock'
