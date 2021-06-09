@@ -11,23 +11,21 @@ export interface RightContentBlockProps {
 const RightContentBlock = ({ icon, title, content }: RightContentBlockProps): JSX.Element => {
   return (
     <Fade direction="right">
-      <Grid container>
-        <Grid item xs={12} sm={6}>
-          <Box m={15}>
+      <Box m={15} mb={25}>
+        <Grid container>
+          <Grid item xs={12} sm={6}>
             <SvgIcon src={icon} width="100%" height="100%" />
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Box m={15}>
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <Typography variant="h2" component="h2" gutterBottom>
               {title}
             </Typography>
             <Typography variant="h4" component="h4" gutterBottom>
               {content}
             </Typography>
-          </Box>
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
     </Fade>
   )
 }
