@@ -14,17 +14,14 @@ const MiddleContentBlock = ({ title, content }: MiddleContentBlockProps): JSX.El
           item
           xs={12}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
             textAlign: 'center',
           }}
         >
-          <Box m={15}>
+          <Box m={10}>
             <Typography variant="h2" component="h2" gutterBottom>
               {title}
             </Typography>
-            <Typography variant="h4" component="h4" gutterBottom>
+            <Typography variant="h4" component="h4">
               {content}
             </Typography>
           </Box>
