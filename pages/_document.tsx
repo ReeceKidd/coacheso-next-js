@@ -30,8 +30,8 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <script
-            async
             defer
+            async
             data-domain="coacheso.com"
             src="https://plausible.io/js/plausible.js"
           />
