@@ -31,10 +31,10 @@ const SkillsSearchBlock = ({ icon, title, content }: SkillsSearchBlockProps): JS
       <Box m={10}>
         <Grid container spacing={10}>
           <Grid item xs={12} sm={6}>
-            <Typography variant="h2" component="h2" gutterBottom>
+            <Typography variant="h2" component="h1" gutterBottom>
               {title}
             </Typography>
-            <Typography variant="h4" component="h4" gutterBottom>
+            <Typography variant="h4" component="h2" gutterBottom>
               {content}
             </Typography>
             <SkillsSearchForm
