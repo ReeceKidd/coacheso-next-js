@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { Container } from '@material-ui/core'
 
 import Metadata from '../components/Metadata/Metadata'
@@ -8,6 +9,7 @@ import LeftContentBlock from '../components/LeftContentBlock/LeftContentBlock'
 import RightContentBlock from '../components/RightContentBlock/RightContentBlock'
 
 export default function Index(): JSX.Element {
+  const router = useRouter()
   return (
     <Container>
       <Metadata
@@ -42,6 +44,13 @@ export default function Index(): JSX.Element {
         title={'Coaching for all skills'}
         content={'From programming to tennis find a coach for all of your interests'}
         icon={'developer.svg'}
+      />
+      <RightContentBlock
+        title={'Become a coach'}
+        content={'Share your skills, earn money and help others improve.'}
+        icon={'process-outline.svg'}
+        buttonText={'Become a coach'}
+        onClick={() => router.push('/become-a-coach')}
       />
     </Container>
   )

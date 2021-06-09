@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@material-ui/core'
+import { Box, Button, Grid, Typography } from '@material-ui/core'
 import { Fade } from 'react-awesome-reveal'
 import SvgIcon from '../SvgIcon/SvgIcon'
 
@@ -6,9 +6,17 @@ export interface RightContentBlockProps {
   icon: string
   title: string
   content: string
+  buttonText?: string
+  onClick?: () => void
 }
 
-const RightContentBlock = ({ icon, title, content }: RightContentBlockProps): JSX.Element => {
+const RightContentBlock = ({
+  icon,
+  title,
+  content,
+  buttonText,
+  onClick,
+}: RightContentBlockProps): JSX.Element => {
   return (
     <Fade direction="right">
       <Box m={15} mb={25}>
@@ -23,6 +31,16 @@ const RightContentBlock = ({ icon, title, content }: RightContentBlockProps): JS
             <Typography variant="h4" component="h4" gutterBottom>
               {content}
             </Typography>
+            {buttonText && (
+              <Box
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                m={5}
+              >
+                <Button variant="contained" color="primary" onClick={onClick}>
+                  {buttonText}
+                </Button>
+              </Box>
+            )}
           </Grid>
         </Grid>
       </Box>
