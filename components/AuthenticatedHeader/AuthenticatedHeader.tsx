@@ -64,16 +64,11 @@ export default function AuthenticatedHeader({
 
   const [profilePicture, setProfilePicture] = useState('')
   const [mode, setMode] = useState(currentUser?.mode || '')
-  const [anchorElement, setAnchorElement] = useState(null)
+
   const [mobileMoreAnchorElement, setMobileMoreAnchorElement] = useState(null)
 
-  const isMenuOpen = Boolean(anchorElement)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorElement)
 
-  const handleMenuClose = (): void => {
-    setAnchorElement(null)
-    handleMobileMenuClose()
-  }
   const handleMobileMenuClose = (): void => {
     setMobileMoreAnchorElement(null)
   }
@@ -136,21 +131,6 @@ export default function AuthenticatedHeader({
     .filter((link) => link)
     .map((element, index) => <MenuItem key={index}>{element}</MenuItem>)
 
-  const menuId = 'primary-search-account-menu'
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorElement}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      {menuItems}
-    </Menu>
-  )
-
   const mobileMenuId = 'primary-search-account-menu-mobile'
   const renderMobileMenu = (
     <Menu
@@ -206,7 +186,6 @@ export default function AuthenticatedHeader({
         </Toolbar>
       </AppBar>
       {isMobileMenuOpen && renderMobileMenu}
-      {isMenuOpen && renderMenu}
     </div>
   )
 }
