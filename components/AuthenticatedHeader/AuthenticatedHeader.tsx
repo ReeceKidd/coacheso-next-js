@@ -205,8 +205,8 @@ export default function AuthenticatedHeader({
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+      {isMobileMenuOpen && renderMobileMenu}
+      {isMenuOpen && renderMenu}
     </div>
   )
 }

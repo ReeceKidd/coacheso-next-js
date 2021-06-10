@@ -6,7 +6,7 @@ import AuthenticatedHeader, {
 } from '../../components/AuthenticatedHeader/AuthenticatedHeader'
 
 jest.mock('next/router', () => ({
-  useRouter: jest.fn(() => ({ query: { activity: 'tennis' } })),
+  useRouter: jest.fn(() => ({ push: jest.fn() })),
 }))
 jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
   UserMode: {
