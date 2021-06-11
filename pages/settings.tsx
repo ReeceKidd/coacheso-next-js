@@ -20,7 +20,7 @@ export default function Settings(): JSX.Element {
 
   return (
     <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
-      <Grid item xs={4}>
+      <Grid item xs={12} md={4}>
         <Box
           border={1}
           borderColor="#ddd"
