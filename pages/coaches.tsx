@@ -14,7 +14,7 @@ export default function Coaches(): JSX.Element {
   })
 
   return (
-    <Container maxWidth="lg">
+    <Container>
       <Box p="1rem">
         <Typography variant="h4" component="h1" gutterBottom>
           Coaches

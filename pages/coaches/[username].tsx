@@ -29,8 +29,8 @@ export default function CoachingProfile(): JSX.Element {
 
   return (
     <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
-      <Grid container spacing={4}>
-        <Grid item xs={4}>
+      <Grid container>
+        <Grid item xs={12} md={4}>
           <Box
             border={1}
             borderColor="#ddd"
@@ -73,7 +73,7 @@ export default function CoachingProfile(): JSX.Element {
             <Typography>{`Skill ${skill}`}</Typography>
           </Box>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={8}>
           <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Students
