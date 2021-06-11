@@ -9,6 +9,8 @@ import {
   Button,
   Menu,
   IconButton,
+  useTheme,
+  useMediaQuery,
 } from '@material-ui/core'
 import MoreIcon from '@material-ui/icons/MoreVert'
 
@@ -58,6 +60,8 @@ export default function UnauthenticatedHeader({
 
   const [mobileMoreAnchorElement, setMobileMoreAnchorElement] = useState(null)
 
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const isMobileMenuOpen = Boolean(mobileMoreAnchorElement)
 
   const handleMobileMenuClose = (): void => {
@@ -79,9 +83,7 @@ export default function UnauthenticatedHeader({
       onClose={handleMobileMenuClose}
     >
       <Link href={'/api/auth/login'}>
-        <Button variant="outlined" color="inherit">
-          {'Login'}
-        </Button>
+        <Button color="inherit">{'Login'}</Button>
       </Link>
     </Menu>
   )
@@ -115,10 +117,10 @@ export default function UnauthenticatedHeader({
             >
               <MoreIcon />
             </IconButton>
+            {isMobile && isMobileMenuOpen && renderMobileMenu}
           </div>
         </Toolbar>
       </AppBar>
-      {isMobileMenuOpen && renderMobileMenu}
     </div>
   )
 }

@@ -11,6 +11,8 @@ import {
   IconButton,
   Avatar,
   Menu,
+  useTheme,
+  useMediaQuery,
 } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import MoreIcon from '@material-ui/icons/MoreVert'
@@ -56,6 +58,8 @@ export default function AuthenticatedHeader({
   darkState,
   handleThemeChange,
 }: AuthenticatedHeaderProps): JSX.Element {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const classes = useStyles()
   const { data: currentUserData } = useCurrentUserQuery()
 
@@ -93,6 +97,7 @@ export default function AuthenticatedHeader({
     <Link href={'/coaching-dashboard'}>
       <Button
         color="inherit"
+        variant="outlined"
         onClick={() => {
           setMode(UserMode.Coach)
           updateCurrentUser({ variables: { input: { mode: UserMode.Coach } } })
@@ -107,6 +112,7 @@ export default function AuthenticatedHeader({
     <Link href={'/student-dashboard'}>
       <Button
         color="inherit"
+        variant="outlined"
         onClick={() => {
           setMode(UserMode.Student)
           updateCurrentUser({ variables: { input: { mode: UserMode.Student } } })
@@ -154,38 +160,34 @@ export default function AuthenticatedHeader({
   const router = useRouter()
 
   return (
-    <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            <Link
-              href={
-                currentUser && mode === UserMode.Coach
-                  ? '/coaching-dashboard'
-                  : '/student-dashboard'
-              }
-            >
-              <LinkText href="" color="inherit">
-                Coacheso
-              </LinkText>
-            </Link>
-          </Typography>
-          <Switch checked={darkState} onChange={handleThemeChange} />
-          <div className={classes.sectionDesktop}>{menuItems}</div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {isMobileMenuOpen && renderMobileMenu}
-    </div>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" className={classes.title}>
+          <Link
+            href={
+              currentUser && mode === UserMode.Coach ? '/coaching-dashboard' : '/student-dashboard'
+            }
+          >
+            <LinkText href="" color="inherit">
+              Coacheso
+            </LinkText>
+          </Link>
+        </Typography>
+        <Switch checked={darkState} onChange={handleThemeChange} />
+        <div className={classes.sectionDesktop}>{menuItems}</div>
+        <div className={classes.sectionMobile}>
+          <IconButton
+            aria-label="show more"
+            aria-controls={mobileMenuId}
+            aria-haspopup="true"
+            onClick={handleMobileMenuOpen}
+            color="inherit"
+          >
+            <MoreIcon />
+          </IconButton>
+          {isMobile && isMobileMenuOpen && renderMobileMenu}
+        </div>
+      </Toolbar>
+    </AppBar>
   )
 }

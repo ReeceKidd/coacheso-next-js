@@ -45,8 +45,8 @@ export default function CoachingDashboard(): JSX.Element {
 
   return (
     <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
-      <Grid container spacing={4}>
-        <Grid item xs={4}>
+      <Grid container>
+        <Grid item xs={12} md={4}>
           <Box
             border={1}
             borderColor="#ddd"
@@ -147,14 +147,14 @@ export default function CoachingDashboard(): JSX.Element {
             />
           </Box>
         </Grid>
-        <Grid item xs={6}>
-          <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
+        <Grid item xs={12} md={6}>
+          <Box style={{ backgroundColor: '#FFF' }} m={3} p={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Students
             </Typography>
             <Typography>{`You don't have any students yet`}</Typography>
           </Box>
-          <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
+          <Box style={{ backgroundColor: '#FFF' }} m={3} p={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Reviews
             </Typography>
