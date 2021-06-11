@@ -15,6 +15,7 @@ import {
   useMediaQuery,
 } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
+import Settings from '@material-ui/icons/Settings'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -123,17 +124,35 @@ export default function AuthenticatedHeader({
     </Link>
   )
 
+  const settingsLink = (
+    <Link href={'/settings'}>
+      <Settings />
+    </Link>
+  )
+
   const logoutLink = currentUser && (
     <Link href={'/api/auth/logout'}>
       <Button color="inherit">{'Logout'}</Button>
     </Link>
   )
 
-  const menuItems = [switchToCoachingLink, switchToStudentLink, profileIcon, logoutLink]
+  const menuItems = [
+    switchToCoachingLink,
+    switchToStudentLink,
+    profileIcon,
+    settingsLink,
+    logoutLink,
+  ]
     .filter((link) => link)
     .map((element, index) => <MenuItem key={index}>{element}</MenuItem>)
 
-  const mobileMenuItems = [profileIcon, switchToCoachingLink, switchToStudentLink, logoutLink]
+  const mobileMenuItems = [
+    profileIcon,
+    switchToCoachingLink,
+    switchToStudentLink,
+    settingsLink,
+    logoutLink,
+  ]
     .filter((link) => link)
     .map((element, index) => <MenuItem key={index}>{element}</MenuItem>)
 
