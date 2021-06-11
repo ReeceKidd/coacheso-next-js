@@ -13,8 +13,8 @@ export default function Index(): JSX.Element {
   return (
     <Container>
       <Metadata
-        title="Coacheso - find your perfect coach"
-        description="Have a skill you want to improve? Coacheso helps you find a coach, identify your weaknesses and improve rapidly."
+        title="Coacheso: The coaching marketplace - find your perfect coach"
+        description="Have a skill you want to improve? Coacheso is a coaching marketplace which helps you find a coach, identify your weaknesses and improve rapidly."
       />
       <SkillsSearchBlock
         title={'Improve rapidly with a coach'}

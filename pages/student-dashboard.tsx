@@ -29,7 +29,7 @@ export default function StudentDashboard(): JSX.Element {
   }, [userData, skillsData])
 
   return (
-    <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
+    <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7' }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={4}>
           <Box

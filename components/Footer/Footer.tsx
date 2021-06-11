@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import React from 'react'
 
 export interface FooterProps {
@@ -16,11 +16,9 @@ export default function Footer({ darkState }: FooterProps): JSX.Element {
           width: '100%',
         }}
       >
-        <Container>
-          <Box pt={12} pb={12} style={{ textAlign: 'center' }}>
-            <Typography>Coacheso &reg; {new Date().getFullYear()}</Typography>
-          </Box>
-        </Container>
+        <Box pt={12} pb={12} style={{ textAlign: 'center' }}>
+          <Typography>Coacheso &reg; {new Date().getFullYear()}</Typography>
+        </Box>
       </Box>
     </footer>
   )
