@@ -32,7 +32,7 @@ export const SkillsSearchForm: React.FC<SkillsSearchFormProps> = ({
     >
       {({ handleChange }) => (
         <Form>
-          <FormControl variant="outlined">
+          <FormControl>
             <Autocomplete
               id="skill-search"
               style={{ display: 'flex', minWidth: '200%' }}
@@ -44,8 +44,8 @@ export const SkillsSearchForm: React.FC<SkillsSearchFormProps> = ({
               renderInput={(params) => {
                 return (
                   <>
-                    <TextField label="Skill" name="skill" {...params} />
-                    <IconButton type="submit" color="inherit">
+                    <TextField label="Skill" name="skill" {...params} color="secondary" />
+                    <IconButton type="submit" color="inherit" style={{ marginBottom: 15 }}>
                       <SearchIcon />
                     </IconButton>
                   </>

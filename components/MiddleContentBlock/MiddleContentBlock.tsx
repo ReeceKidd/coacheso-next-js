@@ -9,7 +9,7 @@ export interface MiddleContentBlockProps {
 const MiddleContentBlock = ({ title, content }: MiddleContentBlockProps): JSX.Element => {
   return (
     <Slide direction="up">
-      <Grid container>
+      <Grid container spacing={10}>
         <Grid
           item
           xs={12}

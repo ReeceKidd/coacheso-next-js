@@ -48,7 +48,11 @@ export default function Settings(): JSX.Element {
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="h5">{'Username'}</Typography>
               {!showUsernameForm && (
-                <Link onClick={() => setShowUsernameForm(!showUsernameForm)} variant="body2">
+                <Link
+                  color="secondary"
+                  onClick={() => setShowUsernameForm(!showUsernameForm)}
+                  variant="body2"
+                >
                   {'Edit username'}
                 </Link>
               )}

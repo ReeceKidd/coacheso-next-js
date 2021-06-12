@@ -4,7 +4,7 @@ const themeDark = createMuiTheme({
   overrides: {
     MuiAppBar: {
       root: {
-        background: 'transparent !important',
+        background: '#161B22 !important',
       },
     },
     MuiContainer: {
@@ -17,9 +17,6 @@ const themeDark = createMuiTheme({
   },
   palette: {
     type: 'dark',
-    primary: {
-      main: '#2E1881',
-    },
     secondary: {
       main: '#58A6FF',
     },

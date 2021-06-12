@@ -10,8 +10,7 @@ export default function Footer({ darkState }: FooterProps): JSX.Element {
     <footer>
       <Box
         style={{
-          backgroundColor: darkState ? '#FFF' : '#424242',
-          color: darkState ? '#000' : '#FFF',
+          color: darkState ? '#FFF' : '#000',
           bottom: 0,
           width: '100%',
         }}

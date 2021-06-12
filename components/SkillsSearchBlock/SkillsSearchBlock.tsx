@@ -28,9 +28,9 @@ const SkillsSearchBlock = ({ icon, title, content }: SkillsSearchBlockProps): JS
   }, [data])
   return (
     <Fade direction="left">
-      <Box m={{ xs: 5, md: 10 }}>
-        <Grid container spacing={10}>
-          <Grid item xs={12} md={6}>
+      <Box m={{ xs: 5, sm: 10, md: 20, lg: 30, xl: 40 }}>
+        <Grid container>
+          <Grid item xs={12} sm={7}>
             <Typography variant="h2" component="h1" gutterBottom>
               {title}
             </Typography>
@@ -44,8 +44,8 @@ const SkillsSearchBlock = ({ icon, title, content }: SkillsSearchBlockProps): JS
               skill={skill}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
-            <SvgIcon src={icon} width="100%" height="100%" />
+          <Grid item xs={12} sm={5}>
+            <SvgIcon src={icon} width="100%" height="80%" />
           </Grid>
         </Grid>
       </Box>
