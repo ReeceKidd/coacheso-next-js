@@ -15,11 +15,9 @@ import {
   useMediaQuery,
 } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import Settings from '@material-ui/icons/Settings'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useCurrentUserQuery, UserMode } from '../../lib/graphql/CurrentUser.graphql'
+import { User, UserMode } from '../../lib/graphql/CurrentUser.graphql'
 import { useUpdateCurrentUserMutation } from '../../lib/graphql/UpdateCurrentUser.graphql'
 
 const useStyles = makeStyles((theme) => ({
@@ -51,24 +49,24 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export interface AuthenticatedHeaderProps {
+  user: User
   darkState: boolean
   handleThemeChange: () => void
 }
 
 export default function AuthenticatedHeader({
+  user,
   darkState,
   handleThemeChange,
 }: AuthenticatedHeaderProps): JSX.Element {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const classes = useStyles()
-  const { data: currentUserData } = useCurrentUserQuery()
 
-  const currentUser = currentUserData?.currentUser
   const [updateCurrentUser] = useUpdateCurrentUserMutation()
 
   const [profilePicture, setProfilePicture] = useState('')
-  const [mode, setMode] = useState(currentUser?.mode || '')
+  const [mode, setMode] = useState(user?.mode || '')
 
   const [mobileMoreAnchorElement, setMobileMoreAnchorElement] = useState(null)
 
@@ -81,20 +79,15 @@ export default function AuthenticatedHeader({
     setMobileMoreAnchorElement(event.currentTarget)
   }
 
-  const profileIcon = currentUser && (
-    <IconButton
-      color="inherit"
-      onClick={() =>
-        currentUser.mode === UserMode.Coach
-          ? router.push('/coaching-dashboard')
-          : router.push('/student-dashboard')
-      }
-    >
-      {profilePicture ? <Avatar src={profilePicture} alt="User profile " /> : <AccountCircle />}
-    </IconButton>
+  const profileIcon = user && (
+    <Link href={'/settings'}>
+      <IconButton color="inherit">
+        {profilePicture ? <Avatar src={profilePicture} alt="User profile " /> : <AccountCircle />}
+      </IconButton>
+    </Link>
   )
 
-  const switchToCoachingLink = currentUser && mode === UserMode.Student && (
+  const switchToCoachingLink = user && mode === UserMode.Student && (
     <Link href={'/coaching-dashboard'}>
       <Button
         color="inherit"
@@ -109,7 +102,7 @@ export default function AuthenticatedHeader({
     </Link>
   )
 
-  const switchToStudentLink = currentUser && mode === UserMode.Coach && (
+  const switchToStudentLink = user && mode === UserMode.Coach && (
     <Link href={'/student-dashboard'}>
       <Button
         color="inherit"
@@ -124,35 +117,17 @@ export default function AuthenticatedHeader({
     </Link>
   )
 
-  const settingsLink = (
-    <Link href={'/settings'}>
-      <Settings />
-    </Link>
-  )
-
-  const logoutLink = currentUser && (
+  const logoutLink = user && (
     <Link href={'/api/auth/logout'}>
       <Button color="inherit">{'Logout'}</Button>
     </Link>
   )
 
-  const menuItems = [
-    switchToCoachingLink,
-    switchToStudentLink,
-    profileIcon,
-    settingsLink,
-    logoutLink,
-  ]
+  const menuItems = [switchToCoachingLink, switchToStudentLink, profileIcon, logoutLink]
     .filter((link) => link)
     .map((element, index) => <MenuItem key={index}>{element}</MenuItem>)
 
-  const mobileMenuItems = [
-    profileIcon,
-    switchToCoachingLink,
-    switchToStudentLink,
-    settingsLink,
-    logoutLink,
-  ]
+  const mobileMenuItems = [profileIcon, switchToCoachingLink, switchToStudentLink, logoutLink]
     .filter((link) => link)
     .map((element, index) => <MenuItem key={index}>{element}</MenuItem>)
 
@@ -172,20 +147,16 @@ export default function AuthenticatedHeader({
   )
 
   useEffect(() => {
-    setProfilePicture(currentUser?.picture)
-    setMode(currentUser?.mode)
-  }, [currentUser])
-
-  const router = useRouter()
+    setProfilePicture(user?.picture)
+    setMode(user?.mode)
+  }, [user])
 
   return (
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
           <Link
-            href={
-              currentUser && mode === UserMode.Coach ? '/coaching-dashboard' : '/student-dashboard'
-            }
+            href={user && mode === UserMode.Coach ? '/coaching-dashboard' : '/student-dashboard'}
           >
             <LinkText href="" color="inherit">
               Coacheso

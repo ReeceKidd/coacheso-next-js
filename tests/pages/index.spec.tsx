@@ -3,13 +3,11 @@ import renderer from 'react-test-renderer'
 
 import App from '../../pages/index'
 
-jest.mock('../../components/Metadata/Metadata', () => () => 'Metadata')
-jest.mock('../../components/SkillsSearchBlock/SkillsSearchBlock', () => () => 'SkillsSearchBlock')
-jest.mock('../../components/MiddleContentBlock/MiddleContentBlock', () => () =>
-  'MiddleContentBlock'
-)
-jest.mock('../../components/LeftContentBlock/LeftContentBlock', () => () => 'LeftContentBlock')
-jest.mock('../../components/RightContentBlock/RightContentBlock', () => () => 'RightContentBlock')
+jest.mock('@auth0/nextjs-auth0', () => ({
+  useUser: jest.fn(() => ({ name: 'Reece' })),
+}))
+jest.mock('../../pages/student-dashboard', () => () => 'StudentDashboard')
+jest.mock('../../pages/landing', () => () => 'Landing')
 
 describe('App', () => {
   describe('mounting', () => {
