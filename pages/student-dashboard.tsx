@@ -29,7 +29,7 @@ export default function StudentDashboard(): JSX.Element {
   }, [userData, skillsData])
 
   return (
-    <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7' }}>
+    <Container maxWidth="xl">
       <Grid container spacing={4}>
         <Grid item xs={12} md={4}>
           <Box
@@ -38,7 +38,6 @@ export default function StudentDashboard(): JSX.Element {
             m={3}
             p={3}
             style={{
-              backgroundColor: '#FFF',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -63,7 +62,7 @@ export default function StudentDashboard(): JSX.Element {
           </Box>
         </Grid>
         <Grid item xs={12} md={8}>
-          <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
+          <Box p="1rem" m={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Find a coach
             </Typography>
@@ -74,13 +73,13 @@ export default function StudentDashboard(): JSX.Element {
               skill={skill}
             />
           </Box>
-          <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
+          <Box p="1rem" m={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Coaches
             </Typography>
             <Typography>{`You don't have any coaches yet`}</Typography>
           </Box>
-          <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
+          <Box p="1rem" m={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Reviews
             </Typography>

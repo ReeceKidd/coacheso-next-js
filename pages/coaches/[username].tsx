@@ -28,7 +28,7 @@ export default function CoachingProfile(): JSX.Element {
   }, [coachData])
 
   return (
-    <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
+    <Container maxWidth="xl">
       <Grid container>
         <Grid item xs={12} md={4}>
           <Box
@@ -37,7 +37,6 @@ export default function CoachingProfile(): JSX.Element {
             m={3}
             p={3}
             style={{
-              backgroundColor: '#FFF',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -60,27 +59,27 @@ export default function CoachingProfile(): JSX.Element {
               <Typography variant="h6">{`@${username}`}</Typography>
             </Box>
           </Box>
-          <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
+          <Box border={1} borderColor="#ddd" m={3} p={3}>
             <Typography variant="h5">{`Title`}</Typography>
             <Typography>{title}</Typography>
           </Box>
-          <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
+          <Box border={1} borderColor="#ddd" m={3} p={3}>
             <Typography variant="h5">{`Description`}</Typography>
             <Typography>{description}</Typography>
           </Box>
-          <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
+          <Box border={1} borderColor="#ddd" m={3} p={3}>
             <Typography variant="h5">{`Skill`}</Typography>
             <Typography>{`Skill ${skill}`}</Typography>
           </Box>
         </Grid>
         <Grid item xs={12} md={8}>
-          <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
+          <Box p="1rem" m={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Students
             </Typography>
             <Typography>{`${name} has no students yet`}</Typography>
           </Box>
-          <Box p="1rem" style={{ backgroundColor: '#FFF' }} m={3} border={1} borderColor="#ddd">
+          <Box p="1rem" m={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Reviews
             </Typography>

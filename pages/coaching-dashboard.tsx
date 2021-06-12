@@ -44,7 +44,7 @@ export default function CoachingDashboard(): JSX.Element {
   }, [userData, coachData, skillsData])
 
   return (
-    <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7' }}>
+    <Container maxWidth="xl">
       <Grid container>
         <Grid item xs={12} md={4}>
           <Box
@@ -53,7 +53,6 @@ export default function CoachingDashboard(): JSX.Element {
             m={3}
             p={3}
             style={{
-              backgroundColor: '#FFF',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -81,11 +80,15 @@ export default function CoachingDashboard(): JSX.Element {
               </Button>
             </Box>
           </Box>
-          <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
+          <Box border={1} borderColor="#ddd" m={3} p={3}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="h5">{'Title'}</Typography>
               {!showTitleForm && (
-                <Link onClick={() => setShowTitleForm(!showTitleForm)} variant="body2">
+                <Link
+                  color="secondary"
+                  variant="inherit"
+                  onClick={() => setShowTitleForm(!showTitleForm)}
+                >
                   {'Edit title'}
                 </Link>
               )}
@@ -100,7 +103,7 @@ export default function CoachingDashboard(): JSX.Element {
               }}
             />
           </Box>
-          <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
+          <Box border={1} borderColor="#ddd" m={3} p={3}>
             <div
               style={{
                 display: 'flex',
@@ -111,7 +114,11 @@ export default function CoachingDashboard(): JSX.Element {
             >
               <Typography variant="h5">{'Description'}</Typography>
               {!showTitleForm && (
-                <Link onClick={() => setShowDescriptionForm(!showDescriptionForm)} variant="body2">
+                <Link
+                  color="secondary"
+                  onClick={() => setShowDescriptionForm(!showDescriptionForm)}
+                  variant="body2"
+                >
                   {'Edit description'}
                 </Link>
               )}
@@ -126,11 +133,15 @@ export default function CoachingDashboard(): JSX.Element {
               }}
             />
           </Box>
-          <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
+          <Box border={1} borderColor="#ddd" m={3} p={3}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="h5">{'Skills'}</Typography>
               {!showSkillsForm && (
-                <Link onClick={() => setShowSkillsForm(!showSkillsForm)} variant="body2">
+                <Link
+                  color="secondary"
+                  onClick={() => setShowSkillsForm(!showSkillsForm)}
+                  variant="body2"
+                >
                   {'Edit skill'}
                 </Link>
               )}
@@ -148,13 +159,13 @@ export default function CoachingDashboard(): JSX.Element {
           </Box>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Box style={{ backgroundColor: '#FFF' }} m={3} p={3} border={1} borderColor="#ddd">
+          <Box m={3} p={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Students
             </Typography>
             <Typography>{`You don't have any students yet`}</Typography>
           </Box>
-          <Box style={{ backgroundColor: '#FFF' }} m={3} p={3} border={1} borderColor="#ddd">
+          <Box m={3} p={3} border={1} borderColor="#ddd">
             <Typography variant="h5" component="h1" gutterBottom>
               Reviews
             </Typography>

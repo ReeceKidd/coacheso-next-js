@@ -19,7 +19,7 @@ export default function Settings(): JSX.Element {
   }, [currentUserData])
 
   return (
-    <Container maxWidth="xl" style={{ backgroundColor: '#F7F7F7', marginTop: 10 }}>
+    <Container maxWidth="xl">
       <Grid item xs={12} md={4}>
         <Box
           border={1}
@@ -27,7 +27,6 @@ export default function Settings(): JSX.Element {
           m={3}
           p={3}
           style={{
-            backgroundColor: '#FFF',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -45,7 +44,7 @@ export default function Settings(): JSX.Element {
           </Box>
         </Box>
         <Box>
-          <Box border={1} borderColor="#ddd" bgcolor="#FFF" m={3} p={3}>
+          <Box border={1} borderColor="#ddd" m={3} p={3}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="h5">{'Username'}</Typography>
               {!showUsernameForm && (

@@ -1,8 +1,12 @@
-import grey from '@material-ui/core/colors/grey'
 import { createMuiTheme } from '@material-ui/core/styles'
 
 const themeDark = createMuiTheme({
   overrides: {
+    MuiAppBar: {
+      root: {
+        background: 'transparent !important',
+      },
+    },
     MuiContainer: {
       root: {
         display: 'flex',
@@ -12,9 +16,13 @@ const themeDark = createMuiTheme({
     },
   },
   palette: {
-    primary: { main: grey[200] },
-    secondary: { main: grey[400] },
     type: 'dark',
+    primary: {
+      main: '#2E1881',
+    },
+    secondary: {
+      main: '#58A6FF',
+    },
   },
 })
 
@@ -29,9 +37,13 @@ const themeLight = createMuiTheme({
     },
   },
   palette: {
-    primary: { main: grey[800] },
-    secondary: { main: grey[900] },
     type: 'light',
+    primary: {
+      main: '#2E1881',
+    },
+    secondary: {
+      main: '#0366D6',
+    },
   },
 })
 
