@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Typography, Box, Grid, Avatar, Link, Button } from '@material-ui/core'
+import { Container, Typography, Box, Grid, Avatar, Link, Button, Paper } from '@material-ui/core'
 import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
@@ -45,133 +45,147 @@ export default function CoachingDashboard(): JSX.Element {
 
   return (
     <Container maxWidth="xl">
-      <Grid container>
+      <Grid container spacing={4}>
         <Grid item xs={12} md={4}>
-          <Box
-            border={1}
-            borderColor="#ddd"
-            m={3}
-            p={3}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'space-around',
-            }}
-          >
-            <Box p="1rem">
-              <Avatar
-                src={profilePicture}
-                style={{
-                  height: '70px',
-                  width: '70px',
+          <Paper>
+            <Box
+              m={3}
+              p={3}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+              }}
+            >
+              <Box p="1rem">
+                <Avatar
+                  src={profilePicture}
+                  style={{
+                    height: '70px',
+                    width: '70px',
+                  }}
+                />
+              </Box>
+              <Box>
+                <Typography variant="h5">{name}</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h6">{`@${username}`}</Typography>
+              </Box>
+              <Box style={{ display: 'flex' }}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => router.push(`/coaches/${username}`)}
+                >
+                  Preview public mode
+                </Button>
+              </Box>
+            </Box>
+          </Paper>
+          <Paper>
+            <Box m={3} p={3}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography variant="h5">{'Title'}</Typography>
+                {!showTitleForm && (
+                  <Link
+                    color="secondary"
+                    variant="inherit"
+                    onClick={() => setShowTitleForm(!showTitleForm)}
+                  >
+                    {'Edit title'}
+                  </Link>
+                )}
+              </div>
+              <TitleForm
+                showTitleForm={showTitleForm}
+                setShowTitleForm={setShowTitleForm}
+                setTitle={setTitle}
+                title={title}
+                onSubmit={({ title }) => {
+                  updateCoach({ variables: { input: { title } } })
                 }}
               />
             </Box>
-            <Box>
-              <Typography variant="h5">{name}</Typography>
+          </Paper>
+          <Paper>
+            <Box m={3} p={3}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  marginBottom: '5%',
+                }}
+              >
+                <Typography variant="h5">{'Description'}</Typography>
+                {!showTitleForm && (
+                  <Link
+                    color="secondary"
+                    onClick={() => setShowDescriptionForm(!showDescriptionForm)}
+                    variant="body2"
+                  >
+                    {'Edit description'}
+                  </Link>
+                )}
+              </div>
+              <DescriptionForm
+                showDescriptionForm={showDescriptionForm}
+                setShowDescriptionForm={setShowDescriptionForm}
+                setDescription={setDescription}
+                description={description}
+                onSubmit={({ description }) => {
+                  updateCoach({ variables: { input: { description } } })
+                }}
+              />
             </Box>
-            <Box>
-              <Typography variant="h6">{`@${username}`}</Typography>
+          </Paper>
+          <Paper>
+            <Box m={3} p={3}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography variant="h5">{'Skills'}</Typography>
+                {!showSkillsForm && (
+                  <Link
+                    color="secondary"
+                    onClick={() => setShowSkillsForm(!showSkillsForm)}
+                    variant="body2"
+                  >
+                    {'Edit skill'}
+                  </Link>
+                )}
+              </div>
+              <SkillsForm
+                showSkillsForm={showSkillsForm}
+                setShowSkillsForm={setShowSkillsForm}
+                setSkill={setSkill}
+                skill={skill}
+                availableSkills={availableSkills}
+                onSubmit={() => {
+                  updateCoach({ variables: { input: { skills: [{ skill }] } } })
+                }}
+              />
             </Box>
-            <Box style={{ display: 'flex' }}>
-              <Button variant="outlined" onClick={() => router.push('/coaching-profile')}>
-                Preview public mode
-              </Button>
-            </Box>
-          </Box>
-          <Box border={1} borderColor="#ddd" m={3} p={3}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="h5">{'Title'}</Typography>
-              {!showTitleForm && (
-                <Link
-                  color="secondary"
-                  variant="inherit"
-                  onClick={() => setShowTitleForm(!showTitleForm)}
-                >
-                  {'Edit title'}
-                </Link>
-              )}
-            </div>
-            <TitleForm
-              showTitleForm={showTitleForm}
-              setShowTitleForm={setShowTitleForm}
-              setTitle={setTitle}
-              title={title}
-              onSubmit={({ title }) => {
-                updateCoach({ variables: { input: { title } } })
-              }}
-            />
-          </Box>
-          <Box border={1} borderColor="#ddd" m={3} p={3}>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                marginBottom: '5%',
-              }}
-            >
-              <Typography variant="h5">{'Description'}</Typography>
-              {!showTitleForm && (
-                <Link
-                  color="secondary"
-                  onClick={() => setShowDescriptionForm(!showDescriptionForm)}
-                  variant="body2"
-                >
-                  {'Edit description'}
-                </Link>
-              )}
-            </div>
-            <DescriptionForm
-              showDescriptionForm={showDescriptionForm}
-              setShowDescriptionForm={setShowDescriptionForm}
-              setDescription={setDescription}
-              description={description}
-              onSubmit={({ description }) => {
-                updateCoach({ variables: { input: { description } } })
-              }}
-            />
-          </Box>
-          <Box border={1} borderColor="#ddd" m={3} p={3}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="h5">{'Skills'}</Typography>
-              {!showSkillsForm && (
-                <Link
-                  color="secondary"
-                  onClick={() => setShowSkillsForm(!showSkillsForm)}
-                  variant="body2"
-                >
-                  {'Edit skill'}
-                </Link>
-              )}
-            </div>
-            <SkillsForm
-              showSkillsForm={showSkillsForm}
-              setShowSkillsForm={setShowSkillsForm}
-              setSkill={setSkill}
-              skill={skill}
-              availableSkills={availableSkills}
-              onSubmit={() => {
-                updateCoach({ variables: { input: { skills: [{ skill }] } } })
-              }}
-            />
-          </Box>
+          </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Box m={3} p={3} border={1} borderColor="#ddd">
-            <Typography variant="h5" component="h1" gutterBottom>
-              Students
-            </Typography>
-            <Typography>{`You don't have any students yet`}</Typography>
-          </Box>
-          <Box m={3} p={3} border={1} borderColor="#ddd">
-            <Typography variant="h5" component="h1" gutterBottom>
-              Reviews
-            </Typography>
+          <Paper>
+            <Box m={3} p={3}>
+              <Typography variant="h5" component="h1" gutterBottom>
+                Students
+              </Typography>
+              <Typography>{`You don't have any students yet`}</Typography>
+            </Box>
+          </Paper>
+          <Paper>
+            <Box m={3} p={3}>
+              <Typography variant="h5" component="h1" gutterBottom>
+                Reviews
+              </Typography>
 
-            <Typography>{`You don't have any reviews yet`}</Typography>
-          </Box>
+              <Typography>{`You don't have any reviews yet`}</Typography>
+            </Box>
+          </Paper>
         </Grid>
       </Grid>
     </Container>
