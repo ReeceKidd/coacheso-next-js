@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container } from '@material-ui/core'
 
 import Metadata from '../components/Metadata/Metadata'
 import MiddleContentBlock from '../components/MiddleContentBlock/MiddleContentBlock'
@@ -8,7 +7,7 @@ import RightContentBlock from '../components/RightContentBlock/RightContentBlock
 
 export default function BecomeACoach(): JSX.Element {
   return (
-    <Container>
+    <>
       <Metadata
         title="Become a coach - start coaching earn money and share your skills"
         description="Share your skills to help others improve rapidly. Work with motivated people and earn money in the process."
@@ -49,6 +48,6 @@ export default function BecomeACoach(): JSX.Element {
         content={'You choose your own schedule'}
         icon={'developer.svg'}
       />
-    </Container>
+    </>
   )
 }
