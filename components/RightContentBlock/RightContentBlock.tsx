@@ -19,7 +19,7 @@ const RightContentBlock = ({
 }: RightContentBlockProps): JSX.Element => {
   return (
     <Fade direction="right">
-      <Box m={15} mb={25}>
+      <Box m={{ xs: 5, sm: 10 }}>
         <Grid container>
           <Grid item xs={12} sm={6}>
             <SvgIcon src={icon} width="100%" height="100%" />

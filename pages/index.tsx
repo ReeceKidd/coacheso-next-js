@@ -1,6 +1,5 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { Container } from '@material-ui/core'
 
 import Metadata from '../components/Metadata/Metadata'
 import SkillsSearchBlock from '../components/SkillsSearchBlock/SkillsSearchBlock'
@@ -11,7 +10,7 @@ import RightContentBlock from '../components/RightContentBlock/RightContentBlock
 export default function Index(): JSX.Element {
   const router = useRouter()
   return (
-    <Container>
+    <>
       <Metadata
         title="Coacheso: The coaching marketplace - find your perfect coach"
         description="Have a skill you want to improve? Coacheso is a coaching marketplace which helps you find a coach, identify your weaknesses and improve rapidly."
@@ -52,6 +51,6 @@ export default function Index(): JSX.Element {
         buttonText={'Become a coach'}
         onClick={() => router.push('/become-a-coach')}
       />
-    </Container>
+    </>
   )
 }

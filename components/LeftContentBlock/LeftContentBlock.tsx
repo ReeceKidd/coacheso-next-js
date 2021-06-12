@@ -19,7 +19,7 @@ const LeftContentBlock = ({
 }: LeftContentBlockProps): JSX.Element => {
   return (
     <Fade direction="left">
-      <Box m={15} mb={25}>
+      <Box m={{ xs: 5, sm: 10 }}>
         <Grid container>
           <Grid item xs={12} sm={6}>
             <Typography variant="h2" component="h2" gutterBottom>

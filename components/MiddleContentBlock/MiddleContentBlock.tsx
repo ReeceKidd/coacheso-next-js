@@ -17,7 +17,7 @@ const MiddleContentBlock = ({ title, content }: MiddleContentBlockProps): JSX.El
             textAlign: 'center',
           }}
         >
-          <Box m={10}>
+          <Box m={{ xs: 8, sm: 10 }}>
             <Typography variant="h2" component="h2" gutterBottom>
               {title}
             </Typography>
