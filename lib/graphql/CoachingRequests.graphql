@@ -1,0 +1,8 @@
+query CoachingRequests {
+  coachingRequests {
+    _id
+    userId
+    coachId
+    type
+  }
+}

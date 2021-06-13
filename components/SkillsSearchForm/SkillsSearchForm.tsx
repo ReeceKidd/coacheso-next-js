@@ -25,7 +25,6 @@ export const SkillsSearchForm: React.FC<SkillsSearchFormProps> = ({
     <Formik
       initialValues={{ skill: skill || '' }}
       onSubmit={(values) => {
-        console.log(values)
         onSubmit(values)
         setSkill(values.skill)
       }}

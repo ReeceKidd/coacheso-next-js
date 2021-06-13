@@ -3,6 +3,7 @@ import { Container, Typography, Box, Grid, Avatar, Link, Button, Paper } from '@
 import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
+import { useCoachingRequestsQuery } from '../lib/graphql/CoachingRequests.graphql'
 import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
@@ -14,6 +15,7 @@ export default function CoachingDashboard(): JSX.Element {
   const { data: userData } = useCurrentUserQuery()
   const { data: coachData } = useCurrentCoachQuery()
   const { data: skillsData } = useSkillsQuery()
+  const { data: coachingRequestsData } = useCoachingRequestsQuery()
 
   const [updateCoach] = useUpdateCoachMutation()
 
@@ -24,6 +26,7 @@ export default function CoachingDashboard(): JSX.Element {
   const [description, setDescription] = useState('')
   const [skill, setSkill] = useState('')
   const [availableSkills, setAvailableSkills] = useState([])
+  const [coachingRequests, setCoachingRequests] = useState([])
 
   const [showTitleForm, setShowTitleForm] = useState(false)
   const [showDescriptionForm, setShowDescriptionForm] = useState(false)
@@ -41,7 +44,10 @@ export default function CoachingDashboard(): JSX.Element {
     if (skillsData?.skills) {
       setAvailableSkills(skillsData.skills.map((option) => option.skill))
     }
-  }, [userData, coachData, skillsData])
+    if (coachingRequestsData?.coachingRequests) {
+      setCoachingRequests(coachingRequestsData.coachingRequests)
+    }
+  }, [userData, coachData, skillsData, coachingRequestsData])
 
   return (
     <Container maxWidth="xl">
@@ -169,6 +175,20 @@ export default function CoachingDashboard(): JSX.Element {
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
+          <Paper>
+            <Box m={3} p={3}>
+              <Typography variant="h5" component="h1" gutterBottom>
+                Coaching requests
+              </Typography>
+              {coachingRequests.length === 0 ? (
+                <Typography>{`You don't have any coaching requests yet`}</Typography>
+              ) : (
+                coachingRequests.map((request, index) => (
+                  <Typography key={index}>{JSON.stringify(request)}</Typography>
+                ))
+              )}
+            </Box>
+          </Paper>
           <Paper>
             <Box m={3} p={3}>
               <Typography variant="h5" component="h1" gutterBottom>
