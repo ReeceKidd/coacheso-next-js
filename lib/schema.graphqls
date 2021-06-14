@@ -81,7 +81,7 @@ type User {
   familyName: String
   givenName: String
   locale: String
-  mode: UserMode!
+  mode: UserMode
   name: String
   picture: String
   username: String
@@ -89,6 +89,7 @@ type User {
 
 input UserInput {
   mode: UserMode
+  name: String
   username: String
 }
 

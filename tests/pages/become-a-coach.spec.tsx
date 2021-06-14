@@ -5,7 +5,6 @@ import BecomeACoach from '../../pages/become-a-coach'
 
 jest.mock('@auth0/nextjs-auth0', () => ({
   useUser: jest.fn(() => ({ username: 'user' })),
-  withPageAuthRequired: jest.fn(() => true),
 }))
 jest.mock('next/router', () => ({
   useRouter: jest.fn(() => ({ push: jest.fn(() => true) })),
