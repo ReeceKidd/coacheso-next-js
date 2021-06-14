@@ -37,6 +37,9 @@ jest.mock('../../lib/graphql/CurrentCoach.graphql', () => ({
 jest.mock('../../lib/graphql/Skills.graphql', () => ({
   useSkillsQuery: jest.fn().mockResolvedValue({ data: { skills: [{ skill: 'tennis' }] } }),
 }))
+jest.mock('../../lib/graphql/CoachingRequests.graphql', () => ({
+  useCoachingRequestsQuery: jest.fn().mockResolvedValue({ data: { coachingRequests: [] } }),
+}))
 
 describe('CoachingDashboard', () => {
   describe('mounting', () => {
