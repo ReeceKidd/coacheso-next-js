@@ -2,9 +2,10 @@ query CurrentCoach {
   currentCoach {
     _id
     name
+    username
     title
     description
-    profilePicture
+    picture
     skills {
       skill
     }

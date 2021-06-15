@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Typography, Box, Grid, Avatar, Link, Button, Paper } from '@material-ui/core'
-import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
 import { useCoachingRequestsQuery } from '../lib/graphql/CoachingRequests.graphql'
@@ -12,7 +11,6 @@ import { useRouter } from 'next/router'
 
 export default function CoachingDashboard(): JSX.Element {
   const router = useRouter()
-  const { data: userData } = useCurrentUserQuery()
   const { data: coachData } = useCurrentCoachQuery()
   const { data: skillsData } = useSkillsQuery()
   const { data: coachingRequestsData } = useCoachingRequestsQuery()
@@ -21,7 +19,7 @@ export default function CoachingDashboard(): JSX.Element {
 
   const [profilePicture, setProfilePicture] = useState('')
   const [name, setName] = useState('')
-  const [username, setUsernmae] = useState('')
+  const [username, setUsername] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [skill, setSkill] = useState('')
@@ -33,9 +31,9 @@ export default function CoachingDashboard(): JSX.Element {
   const [showSkillsForm, setShowSkillsForm] = useState(false)
 
   useEffect(() => {
-    setProfilePicture(userData?.currentUser.picture)
-    setName(userData?.currentUser.name)
-    setUsernmae(userData?.currentUser.username)
+    setProfilePicture(coachData?.currentCoach.picture)
+    setName(coachData?.currentCoach.name)
+    setUsername(coachData?.currentCoach.username)
     setTitle(coachData?.currentCoach.title)
     setDescription(coachData?.currentCoach.description)
     if (coachData?.currentCoach.skills && coachData?.currentCoach.skills[0]) {
@@ -47,7 +45,7 @@ export default function CoachingDashboard(): JSX.Element {
     if (coachingRequestsData?.coachingRequests) {
       setCoachingRequests(coachingRequestsData.coachingRequests)
     }
-  }, [userData, coachData, skillsData, coachingRequestsData])
+  }, [coachData, skillsData, coachingRequestsData])
 
   return (
     <Container maxWidth="xl">
