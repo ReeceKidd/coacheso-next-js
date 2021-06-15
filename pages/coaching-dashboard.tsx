@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Typography, Box, Grid, Avatar, Link, Button, Paper } from '@material-ui/core'
+import { useRouter } from 'next/router'
+import { useCoachingDashboardQuery } from '../lib/graphql/CoachingDashboard.graphql'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
-import { useCurrentCoachQuery } from '../lib/graphql/CurrentCoach.graphql'
-import { useCoachingRequestsQuery } from '../lib/graphql/CoachingRequests.graphql'
-import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
 import { SkillsForm } from '../components/SkillsForm/SkillsForm'
-import { useRouter } from 'next/router'
 
 export default function CoachingDashboard(): JSX.Element {
   const router = useRouter()
-  const { data: coachData } = useCurrentCoachQuery()
-  const { data: skillsData } = useSkillsQuery()
-  const { data: coachingRequestsData } = useCoachingRequestsQuery()
+  const { data } = useCoachingDashboardQuery()
 
   const [updateCoach] = useUpdateCoachMutation()
 
@@ -31,21 +27,21 @@ export default function CoachingDashboard(): JSX.Element {
   const [showSkillsForm, setShowSkillsForm] = useState(false)
 
   useEffect(() => {
-    setProfilePicture(coachData?.currentCoach.picture)
-    setName(coachData?.currentCoach.name)
-    setUsername(coachData?.currentCoach.username)
-    setTitle(coachData?.currentCoach.title)
-    setDescription(coachData?.currentCoach.description)
-    if (coachData?.currentCoach.skills && coachData?.currentCoach.skills[0]) {
-      setSkill(coachData.currentCoach.skills[0].skill)
+    setProfilePicture(data?.currentCoach.picture)
+    setName(data?.currentCoach.name)
+    setUsername(data?.currentCoach.username)
+    setTitle(data?.currentCoach.title)
+    setDescription(data?.currentCoach.description)
+    if (data?.currentCoach.skills && data?.currentCoach.skills[0]) {
+      setSkill(data.currentCoach.skills[0].skill)
     }
-    if (skillsData?.skills) {
-      setAvailableSkills(skillsData.skills.map((option) => option.skill))
+    if (data?.skills && data?.skills.length > 0) {
+      setAvailableSkills(data.skills.map((option) => option.skill))
     }
-    if (coachingRequestsData?.coachingRequests) {
-      setCoachingRequests(coachingRequestsData.coachingRequests)
+    if (data?.coachingRequests && data?.coachingRequests.length > 0) {
+      setCoachingRequests(data.coachingRequests)
     }
-  }, [coachData, skillsData, coachingRequestsData])
+  }, [data])
 
   return (
     <Container maxWidth="xl">

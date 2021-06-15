@@ -3,10 +3,25 @@ import renderer from 'react-test-renderer'
 
 import App from '../../pages/index'
 
-jest.mock('@auth0/nextjs-auth0', () => ({
-  useUser: jest.fn(() => ({ name: 'Reece' })),
+jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
+  useCurrentUserQuery: jest.fn(() => ({
+    data: {
+      currentUser: {
+        name: 'Reece Kidd',
+        mode: 'student',
+        username: 'reece',
+        picture:
+          'https://lh3.googleusercontent.com/a-/AOh14GhoDg_ewwIbsb4vMRZ_-i2CjiiiWCxd09V1RTV1Aw=s96-c',
+      },
+    },
+    loading: false,
+  })),
+  UserMode: {
+    Student: 'student',
+  },
 }))
 jest.mock('../../pages/student-dashboard', () => () => 'StudentDashboard')
+jest.mock('../../pages/coaching-dashboard', () => () => 'CoachingDashboard')
 jest.mock('../../pages/landing', () => () => 'Landing')
 
 describe('App', () => {

@@ -1,0 +1,23 @@
+query CoachingDashboard {
+  currentCoach {
+    name
+    username
+    title
+    description
+    picture
+    skills {
+      skill
+    }
+    students
+    reviews
+  }
+   skills {
+    skill
+  }
+   coachingRequests {
+    _id
+    userId
+    coachId
+    type
+  }
+}
