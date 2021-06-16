@@ -3,10 +3,10 @@ import { Container, Typography, Box, Grid, Avatar, Link, Button, Paper } from '@
 import { useRouter } from 'next/router'
 import { useCoachingDashboardQuery } from '../lib/graphql/CoachingDashboard.graphql'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
+import { NameForm } from '../components/NameForm/NameForm'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
 import { SkillsForm } from '../components/SkillsForm/SkillsForm'
-import { NameForm } from 'components/NameForm/NameForm'
 
 export default function CoachingDashboard(): JSX.Element {
   const router = useRouter()
