@@ -6,6 +6,7 @@ import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
 import { SkillsForm } from '../components/SkillsForm/SkillsForm'
+import { NameForm } from 'components/NameForm/NameForm'
 
 export default function CoachingDashboard(): JSX.Element {
   const router = useRouter()
@@ -22,6 +23,7 @@ export default function CoachingDashboard(): JSX.Element {
   const [availableSkills, setAvailableSkills] = useState([])
   const [coachingRequests, setCoachingRequests] = useState([])
 
+  const [showNameForm, setShowNameForm] = useState(false)
   const [showTitleForm, setShowTitleForm] = useState(false)
   const [showDescriptionForm, setShowDescriptionForm] = useState(false)
   const [showSkillsForm, setShowSkillsForm] = useState(false)
@@ -82,6 +84,31 @@ export default function CoachingDashboard(): JSX.Element {
                   Preview public mode
                 </Button>
               </Box>
+            </Box>
+          </Paper>
+          <Paper>
+            <Box m={3} p={3}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography variant="h5">{'Name'}</Typography>
+                {!showTitleForm && (
+                  <Link
+                    color="secondary"
+                    variant="inherit"
+                    onClick={() => setShowNameForm(!showNameForm)}
+                  >
+                    {'Edit name'}
+                  </Link>
+                )}
+              </div>
+              <NameForm
+                showNameForm={showNameForm}
+                setShowNameForm={setShowNameForm}
+                setName={setName}
+                name={name}
+                onSubmit={({ name }) => {
+                  updateCoach({ variables: { input: { name } } })
+                }}
+              />
             </Box>
           </Paper>
           <Paper>
