@@ -3,11 +3,11 @@ import renderer from 'react-test-renderer'
 
 import StudentDashboard from '../../pages/student-dashboard'
 
-jest.mock('../../lib/graphql/Skills.graphql', () => ({
-  useSkillsQuery: jest.fn().mockResolvedValue({ data: { skills: [{ skill: 'tennis' }] } }),
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(() => ({ push: jest.fn() })),
 }))
-jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
-  useCurrentUserQuery: jest.fn(() => ({
+jest.mock('../../lib/graphql/StudentDashboard.graphql', () => ({
+  useStudentDashboardQuery: jest.fn(() => ({
     data: {
       currentUser: {
         name: 'Reece Kidd',
@@ -15,6 +15,7 @@ jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
         picture:
           'https://lh3.googleusercontent.com/a-/AOh14GhoDg_ewwIbsb4vMRZ_-i2CjiiiWCxd09V1RTV1Aw=s96-c',
       },
+      skills: [],
     },
     loading: false,
   })),

@@ -13,7 +13,7 @@ export default function CoachingDashboard(): JSX.Element {
 
   const [updateCoach] = useUpdateCoachMutation()
 
-  const [profilePicture, setProfilePicture] = useState('')
+  const [picture, setpicture] = useState('')
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [title, setTitle] = useState('')
@@ -27,7 +27,7 @@ export default function CoachingDashboard(): JSX.Element {
   const [showSkillsForm, setShowSkillsForm] = useState(false)
 
   useEffect(() => {
-    setProfilePicture(data?.currentCoach.picture)
+    setpicture(data?.currentCoach.picture)
     setName(data?.currentCoach.name)
     setUsername(data?.currentCoach.username)
     setTitle(data?.currentCoach.title)
@@ -36,10 +36,10 @@ export default function CoachingDashboard(): JSX.Element {
       setSkill(data.currentCoach.skills[0].skill)
     }
     if (data?.skills && data?.skills.length > 0) {
-      setAvailableSkills(data.skills.map((option) => option.skill))
+      setAvailableSkills(data?.skills.map((option) => option.skill))
     }
     if (data?.coachingRequests && data?.coachingRequests.length > 0) {
-      setCoachingRequests(data.coachingRequests)
+      setCoachingRequests(data?.coachingRequests)
     }
   }, [data])
 
@@ -60,7 +60,7 @@ export default function CoachingDashboard(): JSX.Element {
             >
               <Box p="1rem">
                 <Avatar
-                  src={profilePicture}
+                  src={picture}
                   style={{
                     height: '70px',
                     width: '70px',

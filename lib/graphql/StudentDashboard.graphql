@@ -1,0 +1,13 @@
+query StudentDashboard {
+   currentUser {
+    _id
+    mode
+    username
+    email
+    name
+    picture
+  }
+   skills {
+    skill
+  }
+}

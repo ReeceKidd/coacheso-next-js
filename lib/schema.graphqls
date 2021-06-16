@@ -20,7 +20,7 @@ type Coach {
 input CoachInput {
   description: String
   name: String
-  profilePicture: String
+  picture: String
   skills: [SkillInput!]
   title: String
 }

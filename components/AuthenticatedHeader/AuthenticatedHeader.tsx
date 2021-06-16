@@ -65,7 +65,7 @@ export default function AuthenticatedHeader({
 
   const [updateCurrentUser] = useUpdateCurrentUserMutation()
 
-  const [profilePicture, setProfilePicture] = useState('')
+  const [picture, setpicture] = useState('')
   const [mode, setMode] = useState(user?.mode || '')
 
   const [mobileMoreAnchorElement, setMobileMoreAnchorElement] = useState(null)
@@ -82,7 +82,7 @@ export default function AuthenticatedHeader({
   const profileIcon = user && (
     <Link href={'/settings'}>
       <IconButton color="inherit">
-        {profilePicture ? <Avatar src={profilePicture} alt="User profile " /> : <AccountCircle />}
+        {picture ? <Avatar src={picture} alt="User profile " /> : <AccountCircle />}
       </IconButton>
     </Link>
   )
@@ -147,7 +147,7 @@ export default function AuthenticatedHeader({
   )
 
   useEffect(() => {
-    setProfilePicture(user?.picture)
+    setpicture(user?.picture)
     setMode(user?.mode)
   }, [user])
 

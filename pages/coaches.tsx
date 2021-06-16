@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Typography, Box } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import { useCoachesQuery } from '../lib/graphql/Coaches.graphql'
-import Posts from '../components/Posts/Posts'
+import Posts from '../components/UserCards/UserCards'
 
 export default function Coaches(): JSX.Element {
   const router = useRouter()

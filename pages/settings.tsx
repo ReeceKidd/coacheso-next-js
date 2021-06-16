@@ -11,14 +11,14 @@ function Settings(): JSX.Element {
 
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
-  const [profilePicture, setProfilePicture] = useState('')
+  const [picture, setpicture] = useState('')
 
   const [showNameForm, setShowNameForm] = useState(false)
   const [showUsernameForm, setShowUsernameForm] = useState(false)
 
   useEffect(() => {
     setName(currentUserData?.currentUser.name)
-    setProfilePicture(currentUserData?.currentUser.picture)
+    setpicture(currentUserData?.currentUser.picture)
     setUsername(currentUserData?.currentUser.username)
   }, [currentUserData])
 
@@ -38,7 +38,7 @@ function Settings(): JSX.Element {
           >
             <Box p="1rem">
               <Avatar
-                src={profilePicture}
+                src={picture}
                 style={{
                   height: '70px',
                   width: '70px',

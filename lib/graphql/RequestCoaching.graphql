@@ -1,8 +1,0 @@
-mutation RequestCoaching($input: RequestInput!) {
-  sendRequest(input: $input) {
-    _id
-    userId
-    coachId
-    type
-  }
-}

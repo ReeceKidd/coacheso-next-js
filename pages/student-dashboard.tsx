@@ -2,31 +2,27 @@ import React, { useEffect, useState } from 'react'
 import { Container, Typography, Box, Grid, Avatar, Paper } from '@material-ui/core'
 import { useRouter } from 'next/router'
 
-import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
-import { useSkillsQuery } from '../lib/graphql/Skills.graphql'
+import { useStudentDashboardQuery } from '../lib/graphql/StudentDashboard.graphql'
 import { SkillsSearchForm } from '../components/SkillsSearchForm/SkillsSearchForm'
 
 export default function StudentDashboard(): JSX.Element {
   const router = useRouter()
-  const { data: userData } = useCurrentUserQuery()
-  const { data: skillsData } = useSkillsQuery({
-    variables: {},
-  })
+  const { data } = useStudentDashboardQuery()
 
-  const [profilePicture, setProfilePicture] = useState('')
+  const [picture, setpicture] = useState('')
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [availableSkills, setAvailableSkills] = useState([])
   const [skill, setSkill] = useState('')
 
   useEffect(() => {
-    setProfilePicture(userData?.currentUser.picture)
-    setName(userData?.currentUser.name)
-    setUsername(userData?.currentUser.username)
-    if (skillsData?.skills) {
-      setAvailableSkills(skillsData.skills?.map((skill) => skill.skill))
+    setpicture(data?.currentUser.picture)
+    setName(data?.currentUser.name)
+    setUsername(data?.currentUser.username)
+    if (data?.skills && data?.skills.length > 0) {
+      setAvailableSkills(data?.skills.map((skill) => skill.skill))
     }
-  }, [userData, skillsData])
+  }, [data])
 
   return (
     <Container maxWidth="xl">
@@ -45,7 +41,7 @@ export default function StudentDashboard(): JSX.Element {
             >
               <Box p="1rem">
                 <Avatar
-                  src={profilePicture}
+                  src={picture}
                   style={{
                     height: '70px',
                     width: '70px',

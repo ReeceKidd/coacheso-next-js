@@ -11,14 +11,14 @@ export default function CoachingProfile(): JSX.Element {
     variables: { username },
   })
 
-  const [profilePicture, setProfilePicture] = useState('')
+  const [picture, setpicture] = useState('')
   const [name, setName] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [skill, setSkill] = useState('')
 
   useEffect(() => {
-    setProfilePicture(coachData?.coach.profilePicture)
+    setpicture(coachData?.coach.picture)
     setName(coachData?.coach.name)
     setTitle(coachData?.coach.title)
     setDescription(coachData?.coach.description)
@@ -44,7 +44,7 @@ export default function CoachingProfile(): JSX.Element {
             >
               <Box p="1rem">
                 <Avatar
-                  src={profilePicture}
+                  src={picture}
                   style={{
                     height: '70px',
                     width: '70px',

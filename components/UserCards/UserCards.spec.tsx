@@ -1,14 +1,14 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Posts, { PostsProps } from '../../components/Posts/Posts'
+import UserCards, { UserCardsProps } from './UserCards'
 
 jest.mock('next/router', () => ({
   useRouter: jest.fn(() => ({ push: jest.fn() })),
 }))
 
-describe('Posts', () => {
-  let mockProps: PostsProps
+describe('UserCards', () => {
+  let mockProps: UserCardsProps
   beforeEach(() => {
     mockProps = {
       coaches: [],
@@ -16,11 +16,11 @@ describe('Posts', () => {
   })
   describe('mounting', () => {
     it('should mount without error', () => {
-      expect(() => renderer.create(<Posts coaches={mockProps.coaches} />)).not.toThrow()
+      expect(() => renderer.create(<UserCards coaches={mockProps.coaches} />)).not.toThrow()
     })
 
     it('should unmount without error', () => {
-      const { unmount } = renderer.create(<Posts coaches={mockProps.coaches} />)
+      const { unmount } = renderer.create(<UserCards coaches={mockProps.coaches} />)
 
       expect(() => unmount()).not.toThrow()
     })
