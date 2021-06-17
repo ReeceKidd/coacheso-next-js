@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Typography, Box, Grid, Avatar, Paper } from '@material-ui/core'
+import { Container, Typography, Box, Grid, Avatar, Paper, Button } from '@material-ui/core'
 import { useCoachQuery } from '../../lib/graphql/Coach.graphql'
+import { RequestType, useCoachingRequestMutation } from '../../lib/graphql/CoachingRequest.graphql'
 import { useRouter } from 'next/router'
 
 export default function CoachingProfile(): JSX.Element {
   const router = useRouter()
   const username = router.query.username as string
 
+  const [sendCoachingRequest] = useCoachingRequestMutation()
   const { data: coachData } = useCoachQuery({
     variables: { username },
   })
 
+  const [coachId, setCoachId] = useState('')
   const [picture, setpicture] = useState('')
   const [name, setName] = useState('')
   const [title, setTitle] = useState('')
@@ -18,6 +21,7 @@ export default function CoachingProfile(): JSX.Element {
   const [skill, setSkill] = useState('')
 
   useEffect(() => {
+    setCoachId(coachData?.coach._id)
     setpicture(coachData?.coach.picture)
     setName(coachData?.coach.name)
     setTitle(coachData?.coach.title)
@@ -79,6 +83,20 @@ export default function CoachingProfile(): JSX.Element {
           </Paper>
         </Grid>
         <Grid item xs={12} md={8}>
+          <Box m={3} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Button
+              size="large"
+              color="primary"
+              variant="contained"
+              onClick={() => {
+                sendCoachingRequest({
+                  variables: { input: { coachId, type: RequestType.Coaching } },
+                })
+              }}
+            >
+              Request coaching
+            </Button>
+          </Box>
           <Paper>
             <Box p="1rem" m={3}>
               <Typography variant="h5" component="h1" gutterBottom>

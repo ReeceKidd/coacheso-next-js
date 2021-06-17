@@ -205,7 +205,7 @@ export default function CoachingDashboard(): JSX.Element {
                 <Typography>{`You don't have any coaching requests yet`}</Typography>
               ) : (
                 coachingRequests.map((request, index) => (
-                  <Typography key={index}>{JSON.stringify(request)}</Typography>
+                  <Typography key={index}>{request.userId}</Typography>
                 ))
               )}
             </Box>

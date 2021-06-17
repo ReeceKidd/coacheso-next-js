@@ -20,7 +20,7 @@ type Coach {
 input CoachInput {
   description: String
   name: String
-  picture: String
+  profilePicture: String
   skills: [SkillInput!]
   title: String
 }
@@ -76,15 +76,16 @@ input SkillInput {
 
 type User {
   _id: ObjectId!
+  coachId: ObjectId
   email: String!
   emailVerified: Boolean
   familyName: String
   givenName: String
   locale: String
-  mode: UserMode!
+  mode: UserMode
   name: String
   picture: String
-  username: String
+  username: String!
 }
 
 input UserInput {
