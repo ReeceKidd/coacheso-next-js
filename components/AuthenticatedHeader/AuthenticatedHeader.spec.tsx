@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import renderer from 'react-test-renderer'
 
@@ -39,6 +40,7 @@ describe('AuthenticatedHeader', () => {
     mockProps = {
       darkState: false,
       handleThemeChange: jest.fn(),
+      user: { _id: '1234', email: 'user@gmail.com', mode: 'student' as any, picture: '' },
     }
   })
   describe('mounting', () => {
@@ -48,6 +50,7 @@ describe('AuthenticatedHeader', () => {
           <AuthenticatedHeader
             darkState={mockProps.darkState}
             handleThemeChange={mockProps.handleThemeChange}
+            user={mockProps.user}
           />
         )
       ).not.toThrow()
@@ -58,6 +61,7 @@ describe('AuthenticatedHeader', () => {
         <AuthenticatedHeader
           darkState={mockProps.darkState}
           handleThemeChange={mockProps.handleThemeChange}
+          user={mockProps.user}
         />
       )
 
