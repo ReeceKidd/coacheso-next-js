@@ -22,6 +22,9 @@ jest.mock('../../../lib/graphql/Coach.graphql', () => ({
     loading: false,
   })),
 }))
+jest.mock('../../../lib/graphql/CoachingRequest.graphql', () => ({
+  useCoachingRequestMutation: jest.fn(() => [jest.fn(), { data: {} }]),
+}))
 
 describe('CoachUsername', () => {
   describe('mounting', () => {
