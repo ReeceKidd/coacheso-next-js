@@ -7,6 +7,8 @@ import { NameForm } from '../components/NameForm/NameForm'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
 import { SkillsForm } from '../components/SkillsForm/SkillsForm'
+import CheckIcon from '@material-ui/icons/Check'
+import CrossIcon from '@material-ui/icons/Close'
 
 export default function CoachingDashboard(): JSX.Element {
   const router = useRouter()
@@ -205,7 +207,25 @@ export default function CoachingDashboard(): JSX.Element {
                 <Typography>{`You don't have any coaching requests yet`}</Typography>
               ) : (
                 coachingRequests.map((request, index) => (
-                  <Typography key={index}>{request.userId}</Typography>
+                  <div key={index} style={{ display: 'flex' }}>
+                    <div style={{ flexDirection: 'column', justifyContent: 'center' }}>
+                      <Avatar src={request.picture} />
+                      <Typography>{request.username}</Typography>
+                    </div>
+                    <div style={{ alignItems: 'flex-end', justifyContent: 'space-between' }}>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        style={{ marginRight: 3 }}
+                      >
+                        <CheckIcon />
+                      </Button>
+                      <Button size="small" variant="contained" color="secondary">
+                        <CrossIcon />
+                      </Button>
+                    </div>
+                  </div>
                 ))
               )}
             </Box>

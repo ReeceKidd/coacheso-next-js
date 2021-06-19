@@ -29,8 +29,14 @@ type CoachSkill {
   skill: String!
 }
 
+type CoachingRequest {
+  _id: ObjectId!
+  name: String!
+  picture: String!
+  username: String!
+}
+
 type Mutation {
-  becomeCoach(input: CoachInput!): Coach!
   sendRequest(input: RequestInput!): Request!
   updateCoach(input: CoachInput!): Coach!
   updateCurrentUser(input: UserInput!): User!
@@ -42,7 +48,7 @@ scalar ObjectId
 type Query {
   coach(username: String!): Coach
   coaches(skill: String): [Coach!]!
-  coachingRequests: [Request!]!
+  coachingRequests: [CoachingRequest!]!
   currentCoach: Coach
   currentUser: User
   skills(skill: String): [Skill!]!
@@ -51,13 +57,13 @@ type Query {
 
 type Request {
   _id: ObjectId!
-  coachId: String!
+  coachId: ObjectId!
   type: RequestType!
-  userId: String!
+  userId: ObjectId!
 }
 
 input RequestInput {
-  coachId: String!
+  coachId: ObjectId!
   type: RequestType!
 }
 

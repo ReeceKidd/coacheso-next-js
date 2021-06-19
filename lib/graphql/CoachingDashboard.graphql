@@ -16,8 +16,8 @@ query CoachingDashboard {
   }
    coachingRequests {
     _id
-    userId
-    coachId
-    type
+    username
+    name
+    picture
   }
 }
