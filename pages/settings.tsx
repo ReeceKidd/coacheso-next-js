@@ -11,14 +11,14 @@ function Settings(): JSX.Element {
 
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
-  const [picture, setpicture] = useState('')
+  const [picture, setPicture] = useState('')
 
   const [showNameForm, setShowNameForm] = useState(false)
   const [showUsernameForm, setShowUsernameForm] = useState(false)
 
   useEffect(() => {
     setName(currentUserData?.currentUser.name)
-    setpicture(currentUserData?.currentUser.picture)
+    setPicture(currentUserData?.currentUser.picture)
     setUsername(currentUserData?.currentUser.username)
   }, [currentUserData])
 

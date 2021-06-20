@@ -14,7 +14,7 @@ export default function CoachingProfile(): JSX.Element {
   })
 
   const [coachId, setCoachId] = useState('')
-  const [picture, setpicture] = useState('')
+  const [picture, setPicture] = useState('')
   const [name, setName] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -22,7 +22,7 @@ export default function CoachingProfile(): JSX.Element {
 
   useEffect(() => {
     setCoachId(coachData?.coach._id)
-    setpicture(coachData?.coach.picture)
+    setPicture(coachData?.coach.picture)
     setName(coachData?.coach.name)
     setTitle(coachData?.coach.title)
     setDescription(coachData?.coach.description)

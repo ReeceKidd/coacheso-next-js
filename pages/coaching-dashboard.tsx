@@ -16,7 +16,7 @@ export default function CoachingDashboard(): JSX.Element {
 
   const [updateCoach] = useUpdateCoachMutation()
 
-  const [picture, setpicture] = useState('')
+  const [picture, setPicture] = useState('')
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [title, setTitle] = useState('')
@@ -31,7 +31,7 @@ export default function CoachingDashboard(): JSX.Element {
   const [showSkillsForm, setShowSkillsForm] = useState(false)
 
   useEffect(() => {
-    setpicture(data?.currentCoach.picture)
+    setPicture(data?.currentCoach.picture)
     setName(data?.currentCoach.name)
     setUsername(data?.currentCoach.username)
     setTitle(data?.currentCoach.title)

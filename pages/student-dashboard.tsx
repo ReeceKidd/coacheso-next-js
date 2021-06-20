@@ -9,14 +9,14 @@ export default function StudentDashboard(): JSX.Element {
   const router = useRouter()
   const { data } = useStudentDashboardQuery()
 
-  const [picture, setpicture] = useState('')
+  const [picture, setPicture] = useState('')
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [availableSkills, setAvailableSkills] = useState([])
   const [skill, setSkill] = useState('')
 
   useEffect(() => {
-    setpicture(data?.currentUser.picture)
+    setPicture(data?.currentUser.picture)
     setName(data?.currentUser.name)
     setUsername(data?.currentUser.username)
     if (data?.skills && data?.skills.length > 0) {

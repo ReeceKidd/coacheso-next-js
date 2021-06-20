@@ -65,7 +65,7 @@ export default function AuthenticatedHeader({
 
   const [updateCurrentUser] = useUpdateCurrentUserMutation()
 
-  const [picture, setpicture] = useState('')
+  const [picture, setPicture] = useState('')
   const [mode, setMode] = useState(user?.mode || '')
 
   const [mobileMoreAnchorElement, setMobileMoreAnchorElement] = useState(null)
@@ -147,7 +147,7 @@ export default function AuthenticatedHeader({
   )
 
   useEffect(() => {
-    setpicture(user?.picture)
+    setPicture(user?.picture)
     setMode(user?.mode)
   }, [user])
 
