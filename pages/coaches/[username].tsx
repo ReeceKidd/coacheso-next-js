@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Typography, Box, Grid, Avatar, Paper, Button } from '@material-ui/core'
 import { useCoachQuery } from '../../lib/graphql/Coach.graphql'
-import { RequestType, useCoachingRequestMutation } from '../../lib/graphql/CoachingRequest.graphql'
+import { useCoachingRequestMutation } from '../../lib/graphql/CoachingRequest.graphql'
 import { useRouter } from 'next/router'
 
 export default function CoachingProfile(): JSX.Element {
@@ -13,6 +13,7 @@ export default function CoachingProfile(): JSX.Element {
     variables: { username },
   })
 
+  const [userId, setUserId] = useState('')
   const [coachId, setCoachId] = useState('')
   const [picture, setPicture] = useState('')
   const [name, setName] = useState('')
@@ -21,6 +22,7 @@ export default function CoachingProfile(): JSX.Element {
   const [skill, setSkill] = useState('')
 
   useEffect(() => {
+    setUserId(coachData?.currentUser._id)
     setCoachId(coachData?.coach._id)
     setPicture(coachData?.coach.picture)
     setName(coachData?.coach.name)
@@ -90,7 +92,7 @@ export default function CoachingProfile(): JSX.Element {
               variant="contained"
               onClick={() => {
                 sendCoachingRequest({
-                  variables: { input: { coachId, type: RequestType.Coaching } },
+                  variables: { input: { coachId, userId } },
                 })
               }}
             >

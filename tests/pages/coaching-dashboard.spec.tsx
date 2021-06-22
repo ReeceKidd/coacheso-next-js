@@ -16,6 +16,7 @@ jest.mock('../../lib/graphql/CoachingDashboard.graphql', () => ({
         picture: '',
         name: 'Reece',
         username: 'reece',
+        students: [],
       },
       skills: [],
       coachingRequests: [],
@@ -28,6 +29,9 @@ jest.mock('../../lib/graphql/UpdateCoach.graphql', () => ({
     jest.fn(),
     { data: { currentCoach: { title: 'Tennis coach ' } } },
   ]),
+}))
+jest.mock('../../lib/graphql/RespondToRequest.graphql', () => ({
+  useRespondToRequestMutation: jest.fn(() => [jest.fn(), { data: { request: {} } }]),
 }))
 
 describe('CoachingDashboard', () => {

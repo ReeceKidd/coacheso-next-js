@@ -9,6 +9,9 @@ jest.mock('next/router', () => ({
 jest.mock('../../../lib/graphql/Coach.graphql', () => ({
   useCoachQuery: jest.fn(() => ({
     data: {
+      currentUser: {
+        _id: '1234',
+      },
       coach: {
         name: 'Reece Kidd',
         username: 'reecekidd',

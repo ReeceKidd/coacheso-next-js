@@ -11,7 +11,7 @@ type Coach {
   picture: String
   reviews: String
   skills: [CoachSkill!]
-  students: String
+  students: [ObjectId!]
   title: String
   userId: String!
   username: String!
@@ -23,6 +23,20 @@ input CoachInput {
   profilePicture: String
   skills: [SkillInput!]
   title: String
+}
+
+type CoachResponse {
+  _id: ObjectId!
+  certifications: String
+  description: String
+  name: String
+  picture: String
+  reviews: String
+  skills: [CoachSkill!]
+  students: [Student!]
+  title: String
+  userId: String!
+  username: String!
 }
 
 type CoachSkill {
@@ -50,7 +64,7 @@ type Query {
   coach(username: String!): Coach
   coaches(skill: String): [Coach!]!
   coachingRequests: [CoachingRequest!]!
-  currentCoach: Coach
+  currentCoach: CoachResponse
   currentUser: User
   skills(skill: String): [Skill!]!
   user(userId: ObjectId!): User
@@ -65,14 +79,16 @@ type Request {
 }
 
 input RequestInput {
-  _id: ObjectId!
-  coachId: ObjectId!
-  status: RequestStatus!
-  type: RequestType!
+  _id: ObjectId
+  coachId: ObjectId
+  status: RequestStatus
+  type: RequestType
+  userId: ObjectId
 }
 
 enum RequestStatus {
   accept
+  awaitingResponse
   decline
 }
 
@@ -92,6 +108,13 @@ type Skill {
 
 input SkillInput {
   skill: String!
+}
+
+type Student {
+  name: String!
+  picture: String!
+  userId: String!
+  username: String!
 }
 
 type User {

@@ -3,6 +3,7 @@ import { Container, Typography, Box, Grid, Avatar, Link, Button, Paper } from '@
 import { useRouter } from 'next/router'
 import { useCoachingDashboardQuery } from '../lib/graphql/CoachingDashboard.graphql'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
+import { useRespondToRequestMutation, RequestStatus } from '../lib/graphql/RespondToRequest.graphql'
 import { NameForm } from '../components/NameForm/NameForm'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
@@ -15,6 +16,7 @@ export default function CoachingDashboard(): JSX.Element {
   const { data } = useCoachingDashboardQuery()
 
   const [updateCoach] = useUpdateCoachMutation()
+  const [respondToRequest] = useRespondToRequestMutation()
 
   const [picture, setPicture] = useState('')
   const [name, setName] = useState('')
@@ -24,6 +26,7 @@ export default function CoachingDashboard(): JSX.Element {
   const [skill, setSkill] = useState('')
   const [availableSkills, setAvailableSkills] = useState([])
   const [coachingRequests, setCoachingRequests] = useState([])
+  const [students, setStudents] = useState([])
 
   const [showNameForm, setShowNameForm] = useState(false)
   const [showTitleForm, setShowTitleForm] = useState(false)
@@ -44,6 +47,9 @@ export default function CoachingDashboard(): JSX.Element {
     }
     if (data?.coachingRequests && data?.coachingRequests.length > 0) {
       setCoachingRequests(data?.coachingRequests)
+    }
+    if (data?.currentCoach && data?.currentCoach.students.length > 0) {
+      setStudents(data?.currentCoach.students)
     }
   }, [data])
 
@@ -214,14 +220,41 @@ export default function CoachingDashboard(): JSX.Element {
                     </div>
                     <div style={{ alignItems: 'flex-end', justifyContent: 'space-between' }}>
                       <Button
+                        onClick={async () => {
+                          respondToRequest({
+                            variables: {
+                              input: { _id: request._id, status: RequestStatus.Accept },
+                            },
+                          })
+                          coachingRequests.filter(
+                            (coachingRequest) => coachingRequest._id !== request._id
+                          )
+                        }}
+                        style={{ marginRight: 3, backgroundColor: 'green' }}
                         size="small"
                         variant="contained"
-                        color="primary"
-                        style={{ marginRight: 3 }}
+                        color="secondary"
                       >
                         <CheckIcon />
                       </Button>
-                      <Button size="small" variant="contained" color="secondary">
+                      <Button
+                        onClick={() => {
+                          respondToRequest({
+                            variables: {
+                              input: { _id: request._id, status: RequestStatus.Decline },
+                            },
+                          })
+                          setCoachingRequests(
+                            coachingRequests.filter(
+                              (coachingRequest) => coachingRequest._id !== request._id
+                            )
+                          )
+                        }}
+                        style={{ backgroundColor: 'red' }}
+                        size="small"
+                        variant="contained"
+                        color="secondary"
+                      >
                         <CrossIcon />
                       </Button>
                     </div>
@@ -235,7 +268,23 @@ export default function CoachingDashboard(): JSX.Element {
               <Typography variant="h5" component="h1" gutterBottom>
                 Students
               </Typography>
-              <Typography>{`You don't have any students yet`}</Typography>
+              {students.length === 0 ? (
+                <Typography>{`You don't have any students yet`}</Typography>
+              ) : (
+                students.map((student, index) => (
+                  <div key={index} style={{ display: 'flex' }}>
+                    <div>
+                      <Avatar src={student.picture} />
+                    </div>
+                    <div
+                      style={{ flexDirection: 'column', justifyContent: 'center', marginLeft: 10 }}
+                    >
+                      <Typography>{student.name}</Typography>
+                      <Typography>{`@${student.username}`}</Typography>
+                    </div>
+                  </div>
+                ))
+              )}
             </Box>
           </Paper>
           <Paper>

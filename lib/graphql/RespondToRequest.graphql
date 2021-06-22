@@ -1,0 +1,5 @@
+mutation RespondToRequest($input: RespondToRequestInput!) {
+  respondToRequest(input: $input) {
+    _id
+  }
+}
