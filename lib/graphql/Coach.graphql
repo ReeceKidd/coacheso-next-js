@@ -11,5 +11,7 @@ query Coach($username: String!) {
   }
   currentUser {
     _id
+    mode
   }
+  canRequestCoaching(coachUsername: $username)
 }

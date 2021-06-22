@@ -61,7 +61,8 @@ type Mutation {
 scalar ObjectId
 
 type Query {
-  coach(username: String!): Coach
+  canRequestCoaching(coachUsername: String): Boolean!
+  coach(username: String!): CoachResponse
   coaches(skill: String): [Coach!]!
   coachingRequests: [CoachingRequest!]!
   currentCoach: CoachResponse

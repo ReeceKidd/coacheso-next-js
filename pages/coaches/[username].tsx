@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Typography, Box, Grid, Avatar, Paper, Button } from '@material-ui/core'
-import { useCoachQuery } from '../../lib/graphql/Coach.graphql'
+import { useCoachQuery, UserMode } from '../../lib/graphql/Coach.graphql'
 import { useCoachingRequestMutation } from '../../lib/graphql/CoachingRequest.graphql'
 import { useRouter } from 'next/router'
 
@@ -14,6 +14,8 @@ export default function CoachingProfile(): JSX.Element {
   })
 
   const [userId, setUserId] = useState('')
+  const [userMode, setUserMode] = useState('')
+  const [canRequestCoaching, setCanRequestCoaching] = useState(false)
   const [coachId, setCoachId] = useState('')
   const [picture, setPicture] = useState('')
   const [name, setName] = useState('')
@@ -23,6 +25,8 @@ export default function CoachingProfile(): JSX.Element {
 
   useEffect(() => {
     setUserId(coachData?.currentUser._id)
+    setUserMode(coachData?.currentUser.mode)
+    setCanRequestCoaching(coachData?.canRequestCoaching)
     setCoachId(coachData?.coach._id)
     setPicture(coachData?.coach.picture)
     setName(coachData?.coach.name)
@@ -85,20 +89,23 @@ export default function CoachingProfile(): JSX.Element {
           </Paper>
         </Grid>
         <Grid item xs={12} md={8}>
-          <Box m={3} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button
-              size="large"
-              color="primary"
-              variant="contained"
-              onClick={() => {
-                sendCoachingRequest({
-                  variables: { input: { coachId, userId } },
-                })
-              }}
-            >
-              Request coaching
-            </Button>
-          </Box>
+          {canRequestCoaching && userId && userMode === UserMode.Student && (
+            <Box m={3} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                size="large"
+                color="primary"
+                variant="contained"
+                onClick={() => {
+                  sendCoachingRequest({
+                    variables: { input: { coachId, userId } },
+                  })
+                }}
+              >
+                Request coaching
+              </Button>
+            </Box>
+          )}
+
           <Paper>
             <Box p="1rem" m={3}>
               <Typography variant="h5" component="h1" gutterBottom>
