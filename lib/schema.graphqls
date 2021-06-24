@@ -7,13 +7,13 @@ type Coach {
   _id: ObjectId!
   certifications: String
   description: String
-  name: String
-  picture: String
+  name: String!
+  picture: String!
   reviews: String
   skills: [CoachSkill!]
   students: [ObjectId!]
   title: String
-  userId: String!
+  userId: ObjectId!
   username: String!
 }
 
@@ -35,7 +35,7 @@ type CoachResponse {
   skills: [CoachSkill!]
   students: [Student!]
   title: String
-  userId: String!
+  userId: ObjectId!
   username: String!
 }
 
@@ -75,16 +75,16 @@ type Request {
   _id: ObjectId!
   coachId: ObjectId!
   status: String!
+  studentId: ObjectId!
   type: RequestType!
-  userId: ObjectId!
 }
 
 input RequestInput {
   _id: ObjectId
   coachId: ObjectId
   status: RequestStatus
+  studentId: ObjectId
   type: RequestType
-  userId: ObjectId
 }
 
 enum RequestStatus {
@@ -120,15 +120,17 @@ type Student {
 
 type User {
   _id: ObjectId!
+  auth0Sub: String!
   coachId: ObjectId
   email: String!
   emailVerified: Boolean
   familyName: String
   givenName: String
   locale: String
-  mode: UserMode
+  mode: String
   name: String
   picture: String
+  studentId: ObjectId
   username: String!
 }
 

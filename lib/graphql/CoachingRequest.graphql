@@ -1,7 +1,7 @@
 mutation CoachingRequest($input: RequestInput!) {
   sendRequest(input: $input) {
     coachId
-    userId
+    studentId
     type
   }
 }
