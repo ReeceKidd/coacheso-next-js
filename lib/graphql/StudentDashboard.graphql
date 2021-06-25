@@ -1,9 +1,7 @@
 query StudentDashboard {
-   currentUser {
+   currentStudent {
     _id
-    mode
     username
-    email
     name
     picture
   }

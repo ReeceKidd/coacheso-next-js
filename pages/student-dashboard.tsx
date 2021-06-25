@@ -16,9 +16,9 @@ export default function StudentDashboard(): JSX.Element {
   const [skill, setSkill] = useState('')
 
   useEffect(() => {
-    setPicture(data?.currentUser.picture)
-    setName(data?.currentUser.name)
-    setUsername(data?.currentUser.username)
+    setPicture(data?.currentStudent.picture)
+    setName(data?.currentStudent.name)
+    setUsername(data?.currentStudent.username)
     if (data?.skills && data?.skills.length > 0) {
       setAvailableSkills(data?.skills.map((skill) => skill.skill))
     }

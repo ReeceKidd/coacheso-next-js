@@ -119,7 +119,9 @@ export default function AuthenticatedHeader({
 
   const logoutLink = user && (
     <Link href={'/api/auth/logout'}>
-      <Button color="inherit">{'Logout'}</Button>
+      <Button color="inherit" variant="outlined">
+        {'Logout'}
+      </Button>
     </Link>
   )
 

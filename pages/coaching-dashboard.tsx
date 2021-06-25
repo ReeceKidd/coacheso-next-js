@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { useCoachingDashboardQuery } from '../lib/graphql/CoachingDashboard.graphql'
 import { useUpdateCoachMutation } from '../lib/graphql/UpdateCoach.graphql'
 import { useRespondToRequestMutation, RequestStatus } from '../lib/graphql/RespondToRequest.graphql'
-import { NameForm } from '../components/NameForm/NameForm'
 import { TitleForm } from '../components/TitleForm/TitleForm'
 import { DescriptionForm } from '../components/DescriptionForm/DescriptionForm'
 import { SkillsForm } from '../components/SkillsForm/SkillsForm'
@@ -28,7 +27,6 @@ export default function CoachingDashboard(): JSX.Element {
   const [coachingRequests, setCoachingRequests] = useState([])
   const [students, setStudents] = useState([])
 
-  const [showNameForm, setShowNameForm] = useState(false)
   const [showTitleForm, setShowTitleForm] = useState(false)
   const [showDescriptionForm, setShowDescriptionForm] = useState(false)
   const [showSkillsForm, setShowSkillsForm] = useState(false)
@@ -92,31 +90,6 @@ export default function CoachingDashboard(): JSX.Element {
                   Preview public mode
                 </Button>
               </Box>
-            </Box>
-          </Paper>
-          <Paper>
-            <Box m={3} p={3}>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="h5">{'Name'}</Typography>
-                {!showTitleForm && (
-                  <Link
-                    color="secondary"
-                    variant="inherit"
-                    onClick={() => setShowNameForm(!showNameForm)}
-                  >
-                    {'Edit name'}
-                  </Link>
-                )}
-              </div>
-              <NameForm
-                showNameForm={showNameForm}
-                setShowNameForm={setShowNameForm}
-                setName={setName}
-                name={name}
-                onSubmit={({ name }) => {
-                  updateCoach({ variables: { input: { name } } })
-                }}
-              />
             </Box>
           </Paper>
           <Paper>

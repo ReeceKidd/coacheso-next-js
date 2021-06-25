@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Typography, Box, Grid, Avatar, Paper, Button } from '@material-ui/core'
-import { useCoachQuery, UserMode } from '../../lib/graphql/Coach.graphql'
+import { useCoachQuery } from '../../lib/graphql/Coach.graphql'
 import { useCoachingRequestMutation } from '../../lib/graphql/CoachingRequest.graphql'
 import { useRouter } from 'next/router'
 
@@ -13,8 +13,7 @@ export default function CoachingProfile(): JSX.Element {
     variables: { username },
   })
 
-  const [userId, setUserId] = useState('')
-  const [userMode, setUserMode] = useState('')
+  const [studentId, setStudentId] = useState('')
   const [canRequestCoaching, setCanRequestCoaching] = useState(false)
   const [coachId, setCoachId] = useState('')
   const [picture, setPicture] = useState('')
@@ -24,8 +23,7 @@ export default function CoachingProfile(): JSX.Element {
   const [skill, setSkill] = useState('')
 
   useEffect(() => {
-    setUserId(coachData?.currentUser._id)
-    setUserMode(coachData?.currentUser.mode)
+    setStudentId(coachData?.currentUser.studentId)
     setCanRequestCoaching(coachData?.canRequestCoaching)
     setCoachId(coachData?.coach._id)
     setPicture(coachData?.coach.picture)
@@ -89,7 +87,7 @@ export default function CoachingProfile(): JSX.Element {
           </Paper>
         </Grid>
         <Grid item xs={12} md={8}>
-          {canRequestCoaching && userId && userMode === UserMode.Student && (
+          {canRequestCoaching && studentId && (
             <Box m={3} style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
                 size="large"
@@ -97,7 +95,7 @@ export default function CoachingProfile(): JSX.Element {
                 variant="contained"
                 onClick={() => {
                   sendCoachingRequest({
-                    variables: { input: { coachId, userId } },
+                    variables: { input: { coachId, studentId } },
                   })
                 }}
               >

@@ -9,7 +9,7 @@ jest.mock('next/router', () => ({
 jest.mock('../../lib/graphql/StudentDashboard.graphql', () => ({
   useStudentDashboardQuery: jest.fn(() => ({
     data: {
-      currentUser: {
+      currentStudent: {
         name: 'Reece Kidd',
         username: 'reece',
         picture:

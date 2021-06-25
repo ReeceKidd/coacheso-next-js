@@ -1,0 +1,9 @@
+mutation UpdateStudent($input: StudentInput!) {
+  updateStudent(input: $input) {
+    title
+    description
+    skills {
+      skill
+    }
+  }
+}
