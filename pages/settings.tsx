@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Box, Grid, Avatar, Typography, Link, Paper } from '@material-ui/core'
 import { useUpdateCurrentUserMutation } from '../lib/graphql/UpdateCurrentUser.graphql'
-import { useCurrentUserQuery } from '../lib/graphql/CurrentUser.graphql'
 import { NameForm } from '../components/NameForm/NameForm'
 import { UsernameForm } from '../components/UsernameForm/UsernameForm'
+import useUserContext from '../hooks/useUserContext'
 
 function Settings(): JSX.Element {
-  const { data: currentUserData } = useCurrentUserQuery()
+  const { user } = useUserContext()
   const [updateCurrentUser] = useUpdateCurrentUserMutation()
 
   const [name, setName] = useState('')
@@ -17,10 +17,10 @@ function Settings(): JSX.Element {
   const [showUsernameForm, setShowUsernameForm] = useState(false)
 
   useEffect(() => {
-    setName(currentUserData?.currentUser.name)
-    setPicture(currentUserData?.currentUser.picture)
-    setUsername(currentUserData?.currentUser.username)
-  }, [currentUserData])
+    setName(user?.name)
+    setPicture(user?.picture)
+    setUsername(user?.username)
+  }, [user])
 
   return (
     <Container maxWidth="xl">

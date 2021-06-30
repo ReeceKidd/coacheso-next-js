@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { useUser } from '@auth0/nextjs-auth0'
-import { useCurrentUserQuery } from '../../lib/graphql/CurrentUser.graphql'
 import AuthenticatedHeader from '../AuthenticatedHeader/AuthenticatedHeader'
 import UnauthenticatedHeader from '../UnauthenticatedHeader/UnauthenticatedHeader'
+import useUserContext from '../../hooks/useUserContext'
 
 export interface HeaderProps {
   darkState: boolean
@@ -11,13 +10,12 @@ export interface HeaderProps {
 }
 
 export default function Header({ darkState, handleThemeChange }: HeaderProps): JSX.Element {
-  const { user } = useUser()
-  const { data: currentUserData } = useCurrentUserQuery()
-  const currentUser = currentUserData?.currentUser
-  if (user && currentUser) {
+  const { user } = useUserContext()
+
+  if (user) {
     return (
       <AuthenticatedHeader
-        user={currentUser}
+        user={user}
         darkState={darkState}
         handleThemeChange={handleThemeChange}
       />

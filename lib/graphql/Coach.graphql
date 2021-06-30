@@ -9,9 +9,5 @@ query Coach($username: String!) {
       skill
     }
   }
-  currentUser {
-    _id
-    studentId
-  }
   canRequestCoaching(coachUsername: $username)
 }

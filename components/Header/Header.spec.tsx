@@ -7,14 +7,12 @@ jest.mock('@auth0/nextjs-auth0', () => ({
   useUser: jest.fn(() => ({ name: 'Reece' })),
 }))
 jest.mock('../../lib/graphql/CurrentUser.graphql', () => ({
-  useCurrentUserQuery: jest.fn(() => ({
-    data: {
-      currentUser: {
-        name: 'Reece Kidd',
-        username: 'reece',
-        picture:
-          'https://lh3.googleusercontent.com/a-/AOh14GhoDg_ewwIbsb4vMRZ_-i2CjiiiWCxd09V1RTV1Aw=s96-c',
-      },
+  useUserContext: jest.fn(() => ({
+    user: {
+      name: 'Reece Kidd',
+      username: 'reece',
+      picture:
+        'https://lh3.googleusercontent.com/a-/AOh14GhoDg_ewwIbsb4vMRZ_-i2CjiiiWCxd09V1RTV1Aw=s96-c',
     },
     loading: false,
   })),
